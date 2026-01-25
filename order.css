@@ -1,0 +1,56 @@
+body {
+  background: linear-gradient(to right, #ffecd2, #fcb69f);
+  font-family: Arial, sans-serif;
+}
+
+.order-box {
+  width: 350px;
+  background: white;
+  padding: 25px;
+  margin: 80px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+
+.order-box h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.order-box input,
+.order-box textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.order-box label {
+  font-weight: bold;
+}
+
+.order-box button {
+  width: 100%;
+  padding: 10px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.order-box button:hover {
+  background: darkgreen;
+}
+.product-info {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.product-info img {
+  width: 150px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
