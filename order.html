@@ -2,143 +2,204 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Order Enquiry | HN ENTERPRISES</title>
+<meta charset="UTF-8">
 
-  <link rel="stylesheet" href="order.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Place Your Order | HN ENTERPRISES</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="order.css">
+
 </head>
 
 <body>
 
-  <main class="order-box">
+<header class="site-header">
 
-    <a class="back-link" href="index.html">
-      ← Back to Home
-    </a>
+<div class="header-row">
 
-    <h1>Product Enquiry</h1>
+<div class="company-text">
 
-    <p class="intro">
-      Share your details and HN ENTERPRISES can contact you about this product.
-    </p>
+<h1>HN ENTERPRISES</h1>
 
-    <div class="product-info">
+<p class="tagline">
+Quality Products • Trusted Service
+</p>
 
-      <img id="productImg" alt="Selected product">
+</div>
 
-      <h2 id="productName">
-        Product enquiry
-      </h2>
+<div class="header-contact">
 
-    </div>
+<a href="tel:8294891066">8294891066</a>
 
-    <form id="orderForm">
+<a href="tel:7739233551">7739233551</a>
 
-      <label for="fullName">
-        Full Name
-      </label>
+</div>
 
-      <input
-        id="fullName"
-        name="fullName"
-        type="text"
-        autocomplete="name"
-        required
-      >
+</div>
 
-      <label for="mobile">
-        Mobile Number
-      </label>
+</header>
 
-      <input
-        id="mobile"
-        name="mobile"
-        type="tel"
-        inputmode="numeric"
-        pattern="[0-9+\-\s]{10,15}"
-        autocomplete="tel"
-        required
-      >
 
-      <label for="qty">
-        Quantity
-      </label>
+<main class="order-container">
 
-      <input
-        id="qty"
-        name="quantity"
-        type="number"
-        value="1"
-        min="1"
-        required
-      >
+<a href="index.html" class="back-home">
+← Back to Home
+</a>
 
-      <label for="address">
-        Delivery Address
-      </label>
+<div class="order-box">
 
-      <textarea
-        id="address"
-        name="address"
-        rows="4"
-        autocomplete="street-address"
-        required
-      ></textarea>
+<h2>Product Order</h2>
 
-      <button type="submit">
-        Submit Enquiry
-      </button>
+<p>
+Fill in your details to place an order with HN ENTERPRISES.
+</p>
 
-    </form>
 
-    <p id="formMessage" class="form-message" role="status">
-      Note: Online order submission is not connected yet.
-      This form is currently a front-end enquiry demo.
-    </p>
+<!-- SELECTED PRODUCT -->
 
-  </main>
+<div class="order-product">
 
-  <script>
+<img id="productImage" src="images/G1.jpeg" alt="Selected Product">
 
-    const params = new URLSearchParams(window.location.search);
+<div>
 
-    const productName =
-      params.get("name") || "Product enquiry";
+<h3 id="productName">Garam Masala</h3>
 
-    const productImage =
-      params.get("image") || "";
+<p>Price: ₹<span id="unitPrice">80</span> / 100g</p>
 
-    document.getElementById("productName").textContent =
-      productName;
+<p>Minimum Quantity: 50 Packets</p>
 
-    if (productImage) {
+</div>
 
-      document.getElementById("productImg").src =
-        productImage;
+</div>
 
-    } else {
 
-      document.getElementById("productImg").hidden = true;
+<!-- ORDER FORM -->
 
-    }
+<form id="orderForm" class="order-form">
 
-    document.getElementById("orderForm").addEventListener(
-      "submit",
-      (event) => {
+<label for="fullName">Full Name *</label>
 
-        event.preventDefault();
+<input
+type="text"
+id="fullName"
+placeholder="Enter your full name"
+maxlength="100"
+required>
 
-        document.getElementById("formMessage").textContent =
-          "Your details have been entered, but this website is not yet connected to an order server. No order has been sent or saved. Please call 8294891066 or 7739233551 to confirm your enquiry.";
 
-        document.getElementById("formMessage").classList.add("warning");
+<label for="mobile">Mobile Number *</label>
 
-      }
-    );
+<input
+type="tel"
+id="mobile"
+placeholder="Enter 10 digit mobile number"
+pattern="[6-9][0-9]{9}"
+maxlength="10"
+required>
 
-  </script>
+
+<label for="quantity">Quantity (Packets) *</label>
+
+<input
+type="number"
+id="quantity"
+value="50"
+min="50"
+step="1"
+required>
+
+<small>
+Minimum order is 50 packets. Each packet contains 100 grams.
+</small>
+
+
+<label for="address">Complete Delivery Address *</label>
+
+<textarea
+id="address"
+placeholder="House number, street, city, state and PIN code"
+maxlength="500"
+required></textarea>
+
+
+<!-- PRICE DETAILS -->
+
+<div class="order-total">
+
+<p>
+Price per packet:
+<strong>₹<span id="displayPrice">80</span></strong>
+</p>
+
+<p>
+Quantity:
+<strong id="displayQuantity">50</strong>
+</p>
+
+<hr>
+
+<h3>
+Total Amount:
+₹<span id="totalAmount">4000</span>
+</h3>
+
+<p>
+Estimated Delivery: 10 Days after order confirmation
+</p>
+
+</div>
+
+
+<!-- PAYMENT NOTICE -->
+
+<div class="payment-notice">
+
+<h3>Payment Information</h3>
+
+<p>
+Online payment will be available after the company
+payment gateway is connected.
+</p>
+
+<p>
+Your order enquiry will be sent to the company
+for confirmation. No payment will be marked
+as successful on this page.
+</p>
+
+</div>
+
+
+<button type="submit" class="submit-order">
+
+Send Order Enquiry on WhatsApp
+
+</button>
+
+</form>
+
+</div>
+
+</main>
+
+
+<footer class="site-footer">
+
+<p>
+© <span id="currentYear"></span>
+HN ENTERPRISES. All rights reserved.
+</p>
+
+</footer>
+
+
+<script src="order.js"></script>
 
 </body>
+
 </html>
