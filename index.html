@@ -1,288 +1,477 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="HN ENTERPRISES - Spices and quality products in Siwan, Bihar.">
-  <title>HN ENTERPRISES | Quality Products</title>
-  <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="HN ENTERPRISES - Quality spices and products in Siwan, Bihar.">
+
+<title>HN ENTERPRISES | Quality Products</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* PRODUCT GALLERY */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.gallery-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+    overflow: hidden;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+    border-radius: 8px;
+}
+
+.gallery-card h3 {
+    margin: 12px 0;
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #198754;
+    margin: 10px 0;
+}
+
+.price-unit {
+    font-size: 13px;
+    color: #666;
+    font-weight: normal;
+}
+
+.order-now-btn {
+    display: inline-block;
+    background: #198754;
+    color: white;
+    padding: 11px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 8px;
+    transition: 0.3s;
+}
+
+.order-now-btn:hover {
+    background: #126b40;
+    transform: translateY(-2px);
+}
+
+/* MAP */
+
+.map-wrap iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .gallery-card {
+        padding: 10px;
+    }
+
+    .gallery-card img {
+        height: 130px;
+    }
+
+    .gallery-card h3 {
+        font-size: 15px;
+    }
+
+    .product-price {
+        font-size: 17px;
+    }
+
+    .order-now-btn {
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <header class="site-header" id="home">
-  <div class="header-row">
 
-    <img src="images/Brown Vintage Retro Illustration Farming and Organic Product Logo (1).jpg"
-         alt="HN ENTERPRISES logo" class="logo">
+<div class="header-row">
 
-    <div class="company-text">
-      <h1>HN ENTERPRISES</h1>
-      <p class="tagline">Quality Products • Trusted Service</p>
-    </div>
+<img
+src="images/Brown Vintage Retro Illustration Farming and Organic Product Logo (1).jpg"
+alt="HN ENTERPRISES Logo"
+class="logo">
 
-    <div class="header-contact">
-      <span>Call us:</span>
-      <a href="tel:8294891066">8294891066</a>
-      <a href="tel:7739233551">7739233551</a>
-      <a href="tel:9661238328">9661238328</a>
-    </div>
+<div class="company-text">
 
-  </div>
+<h1>HN ENTERPRISES</h1>
+
+<p class="tagline">
+Quality Products • Trusted Service
+</p>
+
+</div>
+
+<div class="header-contact">
+
+<span>Call us:</span>
+
+<a href="tel:8294891066">8294891066</a>
+
+<a href="tel:7739233551">7739233551</a>
+
+<a href="tel:9661238328">9661238328</a>
+
+</div>
+
+</div>
+
 </header>
 
+
+<!-- NAVIGATION -->
+
 <nav class="main-nav">
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#product">Products</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#contact">Contact</a>
+
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#product">Products</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+
 </nav>
+
 
 <main>
 
-  <!-- IMAGE SLIDER -->
-  <section class="hero-slider">
 
-    <div class="slides">
-      <div class="slide active">
-        <img src="images/dalchiniimage.jfif" alt="Cinnamon">
-      </div>
+<!-- IMAGE SLIDER -->
 
-      <div class="slide">
-        <img src="images/masala image - Copy.jfif" alt="Spices">
-      </div>
+<section class="hero-slider">
 
-      <div class="slide">
-        <img src="images/download 1.jfif" alt="Spice product">
-      </div>
+<div class="slides">
 
-      <div class="slide">
-        <img src="images/download 5.jfif" alt="Spice product">
-      </div>
+<div class="slide active">
+<img src="images/dalchiniimage.jfif" alt="Cinnamon">
+</div>
 
-      <div class="slide">
-        <img src="images/download 6.jfif" alt="Spice product">
-      </div>
+<div class="slide">
+<img src="images/masala image - Copy.jfif" alt="Spices">
+</div>
 
-      <div class="slide">
-        <img src="images/golmarich image.jfif" alt="Black pepper">
-      </div>
-    </div>
+<div class="slide">
+<img src="images/download 1.jfif" alt="Spice Product">
+</div>
 
-    <button class="slider-control prev" type="button">‹</button>
-    <button class="slider-control next" type="button">›</button>
+<div class="slide">
+<img src="images/download 5.jfif" alt="Spice Product">
+</div>
 
-  </section>
+<div class="slide">
+<img src="images/download 6.jfif" alt="Spice Product">
+</div>
 
-  <!-- ABOUT -->
-  <section id="about" class="section about-section">
+<div class="slide">
+<img src="images/golmarich image.jfif" alt="Black Pepper">
+</div>
 
-    <div class="section-heading">
-      <p class="eyebrow">WELCOME</p>
-      <h2>About HN ENTERPRISES</h2>
-    </div>
+</div>
 
-    <p>
-      <strong>HN ENTERPRISES</strong> is a product-packing business
-      based in Bihar, specializing in spices.
-    </p>
+<button class="slider-control prev" type="button">‹</button>
 
-    <div class="info-grid">
-
-      <div class="info-card">
-        <strong>Owner</strong>
-        <span>Ms. Nisha Kumari</span>
-      </div>
-
-      <div class="info-card">
-        <strong>Address</strong>
-        <span>Nirala Nagar, Siwan, Bihar – 841226</span>
-      </div>
-
-      <div class="info-card">
-        <strong>GSTIN</strong>
-        <span>10OAKPK9631K1Z8</span>
-      </div>
-
-      <div class="info-card">
-        <strong>FSSAI</strong>
-        <span>20426261000010</span>
-      </div>
-
-    </div>
-
-    <p class="state-note"><strong>State:</strong> Bihar</p>
-
-  </section>
-
-  <!-- PRODUCTS -->
-  <section id="product" class="section products-section">
-
-    <div class="section-heading">
-      <p class="eyebrow">OUR RANGE</p>
-      <h2>Our Products</h2>
-      <p>Explore the spices offered by HN ENTERPRISES.</p>
-    </div>
-
-    <div class="product-grid">
-      <div class="product-card">Cumin (Zeera)</div>
-      <div class="product-card">Cloves (Laung)</div>
-      <div class="product-card">Black Pepper (Gol Mirch)</div>
-      <div class="product-card">Green Cardamom (Elaichi)</div>
-      <div class="product-card">Black Cardamom (Badi Elaichi)</div>
-      <div class="product-card">Cinnamon (Dalchini)</div>
-      <div class="product-card">Star Anise (Star Phool)</div>
-      <div class="product-card">Bay Leaves (Tej Patta)</div>
-      <div class="product-card">Red Chilli (Lal Mirch)</div>
-    </div>
-
-  </section>
-
-  <!-- GALLERY -->
-  <section id="gallery" class="section gallery-section">
-
-    <div class="section-heading">
-      <p class="eyebrow">A LOOK AT OUR WORK</p>
-      <h2>Our Product Gallery</h2>
-    </div>
-
-    <div class="gallery-grid">
-
-      <article class="gallery-card">
-        <img src="images/G1.jpeg" alt="Garam masala product">
-        <h3>Garam Masala</h3>
-        <a class="button-link"
-           href="order.html?name=Garam%20Masala&image=images%2FG1.jpeg">
-          Order Enquiry
-        </a>
-      </article>
-
-      <article class="gallery-card">
-        <img src="images/g14.jpeg" alt="Garam masala product">
-        <h3>Garam Masala</h3>
-        <a class="button-link"
-           href="order.html?name=Garam%20Masala&image=images%2Fg14.jpeg">
-          Order Enquiry
-        </a>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section contact-section">
-
-    <div class="section-heading">
-      <p class="eyebrow">GET IN TOUCH</p>
-      <h2>Contact Us</h2>
-    </div>
-
-    <div class="contact-card">
-
-      <p>
-        <strong>Phone:</strong>
-        <a href="tel:8294891066">8294891066</a> ·
-        <a href="tel:7739233551">7739233551</a> ·
-        <a href="tel:9661238328">9661238328</a>
-      </p>
-
-      <p>
-        <strong>Email:</strong>
-        <a href="mailto:hnenterprises7739@gmail.com">
-          hnenterprises7739@gmail.com
-        </a>
-      </p>
-
-      <p>
-        <strong>Address:</strong>
-        Nirala Nagar, Siwan, Bihar – 841226
-      </p>
-
-    </div>
-
-    <div class="map-wrap">
-      <iframe
-        title="HN ENTERPRISES location map"
-        src="https://www.google.com/maps?q=Nirala%20Nagar%20Siwan%20Bihar&output=embed"
-        loading="lazy">
-      </iframe>
-    </div>
-
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <p>
-    © <span id="currentYear"></span>
-    HN ENTERPRISES. All rights reserved.
-  </p>
-</footer>
-
-<!-- HN AI BUTTON -->
-<button class="hn-ai-launcher" id="hnAiLauncher" type="button">
-  ✦ HN AI
-</button>
-
-<!-- HN AI CHAT -->
-<section class="hn-ai-panel" id="hnAiPanel" aria-hidden="true">
-
-  <div class="hn-ai-topbar">
-    <div>
-      <strong>HN AI Assistant</strong>
-      <small>HN ENTERPRISES customer help</small>
-    </div>
-
-    <button id="hnAiClose" type="button">×</button>
-  </div>
-
-  <div class="hn-ai-messages" id="hnAiMessages">
-
-    <div class="chat-bubble assistant">
-      नमस्कार! Welcome to HN ENTERPRISES.
-      मैं HN AI हूँ। मैं हमारी कंपनी, मसालों,
-      उपलब्ध जानकारी और ऑर्डर प्रक्रिया के बारे में
-      मदद कर सकता हूँ। आप हिंदी, English या Hinglish
-      में पूछ सकते हैं।
-    </div>
-
-    <div class="suggested-questions">
-      <button type="button" data-question="HN ENTERPRISES के बारे में बताइए।">
-        कंपनी के बारे में
-      </button>
-
-      <button type="button" data-question="आपके कौन-कौन से मसाले उपलब्ध हैं?">
-        उपलब्ध मसाले
-      </button>
-
-      <button type="button" data-question="ऑर्डर कैसे करें?">
-        ऑर्डर कैसे करें?
-      </button>
-    </div>
-
-  </div>
-
-  <form class="hn-ai-form" id="hnAiForm">
-    <input
-      id="hnAiInput"
-      type="text"
-      maxlength="1000"
-      placeholder="अपना सवाल लिखें..."
-      autocomplete="off"
-      required>
-
-    <button type="submit">➤</button>
-  </form>
-
-  <p class="hn-ai-note">
-    AI के जवाबों में गलती हो सकती है।
-    जरूरी जानकारी कंपनी से पुष्टि करें।
-  </p>
+<button class="slider-control next" type="button">›</button>
 
 </section>
 
+
+<!-- ABOUT -->
+
+<section id="about" class="section about-section">
+
+<div class="section-heading">
+
+<p class="eyebrow">WELCOME</p>
+
+<h2>About HN ENTERPRISES</h2>
+
+</div>
+
+<p>
+
+<strong>HN ENTERPRISES</strong> is a product-packing
+business based in Bihar, specializing in spices.
+
+</p>
+
+
+<div class="info-grid">
+
+<div class="info-card">
+<strong>Owner</strong>
+<span>Ms. Nisha Kumari</span>
+</div>
+
+<div class="info-card">
+<strong>Address</strong>
+<span>Nirala Nagar, Siwan, Bihar – 841226</span>
+</div>
+
+<div class="info-card">
+<strong>GSTIN</strong>
+<span>10OAKPK9631K1Z8</span>
+</div>
+
+<div class="info-card">
+<strong>FSSAI</strong>
+<span>20426261000010</span>
+</div>
+
+</div>
+
+<p class="state-note">
+<strong>State:</strong> Bihar
+</p>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="product" class="section products-section">
+
+<div class="section-heading">
+
+<p class="eyebrow">OUR RANGE</p>
+
+<h2>Our Products</h2>
+
+<p>Explore the spices offered by HN ENTERPRISES.</p>
+
+</div>
+
+
+<div class="product-grid">
+
+<div class="product-card">Cumin (Zeera)</div>
+
+<div class="product-card">Cloves (Laung)</div>
+
+<div class="product-card">Black Pepper (Gol Mirch)</div>
+
+<div class="product-card">Green Cardamom (Elaichi)</div>
+
+<div class="product-card">Black Cardamom (Badi Elaichi)</div>
+
+<div class="product-card">Cinnamon (Dalchini)</div>
+
+<div class="product-card">Star Anise (Star Phool)</div>
+
+<div class="product-card">Bay Leaves (Tej Patta)</div>
+
+<div class="product-card">Red Chilli (Lal Mirch)</div>
+
+</div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section id="gallery" class="section gallery-section">
+
+<div class="section-heading">
+
+<p class="eyebrow">A LOOK AT OUR WORK</p>
+
+<h2>Our Product Gallery</h2>
+
+<p>Choose your product and place your order.</p>
+
+</div>
+
+
+<div class="gallery-grid">
+
+
+<!-- PRODUCT 1 -->
+
+<article class="gallery-card">
+
+<img
+src="images/G1.jpeg"
+alt="Garam Masala"
+loading="lazy">
+
+<h3>Garam Masala</h3>
+
+<p class="product-price">
+₹80 <span class="price-unit">/ 100g</span>
+</p>
+
+<a
+class="order-now-btn"
+href="order.html?name=Garam%20Masala&image=images%2FG1.jpeg&price=80&minQty=50">
+
+Order Now
+
+</a>
+
+</article>
+
+
+<!-- PRODUCT 2 -->
+
+<article class="gallery-card">
+
+<img
+src="images/g14.jpeg"
+alt="Garam Masala"
+loading="lazy">
+
+<h3>Garam Masala</h3>
+
+<p class="product-price">
+₹80 <span class="price-unit">/ 100g</span>
+</p>
+
+<a
+class="order-now-btn"
+href="order.html?name=Garam%20Masala&image=images%2Fg14.jpeg&price=80&minQty=50">
+
+Order Now
+
+</a>
+
+</article>
+
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="section contact-section">
+
+<div class="section-heading">
+
+<p class="eyebrow">GET IN TOUCH</p>
+
+<h2>Contact Us</h2>
+
+</div>
+
+
+<div class="contact-card">
+
+<p>
+
+<strong>Phone:</strong>
+
+<a href="tel:8294891066">8294891066</a> ·
+
+<a href="tel:7739233551">7739233551</a> ·
+
+<a href="tel:9661238328">9661238328</a>
+
+</p>
+
+
+<p>
+
+<strong>Email:</strong>
+
+<a href="mailto:hnenterprises7739@gmail.com">
+hnenterprises7739@gmail.com
+</a>
+
+</p>
+
+
+<p>
+
+<strong>Address:</strong>
+
+Nirala Nagar, Siwan, Bihar – 841226
+
+</p>
+
+</div>
+
+
+<div class="map-wrap">
+
+<iframe
+title="HN ENTERPRISES Location"
+src="https://www.google.com/maps?q=Nirala%20Nagar%20Siwan%20Bihar&output=embed"
+loading="lazy">
+</iframe>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+<p>
+
+© <span id="currentYear"></span>
+
+HN ENTERPRISES. All rights reserved.
+
+</p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
 <script src="script.js"></script>
 
+<script>
+
+document.getElementById("currentYear").textContent =
+new Date().getFullYear();
+
+</script>
+
+
 </body>
-    </html>
+  </html>
