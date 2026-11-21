@@ -1,116 +1,96 @@
-* {
-  box-sizing: border-box;
+body {
+    background: #fffaf1;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  padding: 28px 14px;
-
-  display: grid;
-  place-items: center;
-
-  background: linear-gradient(135deg, #fff3df, #e8f0e3);
-
-  color: #263128;
-  font-family: Arial, Helvetica, sans-serif;
+.order-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 15px;
 }
 
 .order-box {
-  width: min(100%, 480px);
-  padding: 28px;
-
-  background: white;
-  border-radius: 16px;
-
-  box-shadow: 0 8px 28px #00000018;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.10);
 }
 
-.back-link {
-  color: #315b37;
-  text-decoration: none;
-  font-weight: 700;
+.order-box h2 {
+    color: #653817;
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
-h1 {
-  margin: 18px 0 4px;
-  text-align: center;
-  color: #315b37;
+.order-product {
+    background: #fff7e9;
+    border: 1px solid #ead7bd;
+    margin: 22px 0;
 }
 
-.intro {
-  margin: 0 0 18px;
-  color: #687168;
-  text-align: center;
+.order-product h3 {
+    color: #653817;
 }
 
-.product-info {
-  text-align: center;
-  margin-bottom: 20px;
+.order-form label {
+    color: #333;
 }
 
-.product-info img {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  border-radius: 10px;
-  background: #faf7f0;
+.order-form input:focus,
+.order-form textarea:focus {
+    outline: none;
+    border: 2px solid #198754;
 }
 
-.product-info h2 {
-  margin: 8px 0 0;
-  font-size: 20px;
+.order-form small {
+    color: #777;
+    display: block;
+    margin-top: 5px;
 }
 
-form {
-  display: grid;
-  gap: 8px;
+.order-total {
+    border: 1px solid #cce8d5;
+    color: #245c39;
 }
 
-label {
-  font-weight: 700;
-  margin-top: 5px;
+.order-total h3 {
+    color: #198754;
+    font-size: 25px;
+    margin-top: 10px;
 }
 
-input,
-textarea {
-  width: 100%;
-  padding: 12px;
-
-  border: 1px solid #d4d9d1;
-  border-radius: 8px;
-
-  font: inherit;
+.payment-notice {
+    background: #fff8e6;
+    border: 1px solid #ead7a8;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
 }
 
-textarea {
-  resize: vertical;
+.payment-notice h3 {
+    color: #80531b;
+    margin-bottom: 8px;
 }
 
-form button {
-  margin-top: 12px;
-  padding: 13px;
-
-  border: 0;
-  border-radius: 8px;
-
-  background: #315b37;
-  color: white;
-
-  font-size: 16px;
-  font-weight: 700;
-
-  cursor: pointer;
+.submit-order {
+    background: #198754;
 }
 
-.form-message {
-  margin: 15px 0 0;
-  color: #6b7169;
-  font-size: 13px;
-  text-align: center;
+.submit-order:hover {
+    background: #126b40;
 }
 
-.form-message.warning {
-  color: #8b3b20;
-  font-weight: 700;
+@media(max-width:600px) {
+
+    .order-box {
+        padding: 15px;
+    }
+
+    .order-box h2 {
+        font-size: 23px;
+    }
+
+    .order-total h3 {
+        font-size: 21px;
+    }
+
 }
