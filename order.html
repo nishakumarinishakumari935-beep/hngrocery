@@ -1,48 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Order Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Order Enquiry | HN ENTERPRISES</title>
+
   <link rel="stylesheet" href="order.css">
 </head>
+
 <body>
 
-<div class="order-box">
+  <main class="order-box">
 
-  <div class="product-info">
-    <img id="productImg" width="150">
-    <h3 id="productName"></h3>
-  </div>
+    <a class="back-link" href="index.html">
+      ← Back to Home
+    </a>
 
-  <form onsubmit="placeOrder(); return false;">
-    <input type="text" placeholder="Full Name" required>
-    <input type="tel" placeholder="Mobile Number" required>
+    <h1>Product Enquiry</h1>
 
-    <label>Quantity:</label>
-    <input type="number" id="qty" value="1" min="1">
+    <p class="intro">
+      Share your details and HN ENTERPRISES can contact you about this product.
+    </p>
 
-    <textarea placeholder="Delivery Address" required></textarea>
+    <div class="product-info">
 
-    <button 
-    type="submit">Place Order</button>
-  </form>
+      <img id="productImg" alt="Selected product">
 
-</div>
+      <h2 id="productName">
+        Product enquiry
+      </h2>
 
-<script>
-const params = new URLSearchParams(window.location.search);
+    </div>
 
-document.getElementById("productName").innerText =
-  params.get("name");
+    <form id="orderForm">
 
-document.getElementById("productImg").src =
-  params.get("image");
+      <label for="fullName">
+        Full Name
+      </label>
 
-function placeOrder() {
-  let qty = document.getElementById("qty").value;
-  alert("Order placed successfully!\nQuantity: " + qty);
-}
-</script>
+      <input
+        id="fullName"
+        name="fullName"
+        type="text"
+        autocomplete="name"
+        required
+      >
+
+      <label for="mobile">
+        Mobile Number
+      </label>
+
+      <input
+        id="mobile"
+        name="mobile"
+        type="tel"
+        inputmode="numeric"
+        pattern="[0-9+\-\s]{10,15}"
+        autocomplete="tel"
+        required
+      >
+
+      <label for="qty">
+        Quantity
+      </label>
+
+      <input
+        id="qty"
+        name="quantity"
+        type="number"
+        value="1"
+        min="1"
+        required
+      >
+
+      <label for="address">
+        Delivery Address
+      </label>
+
+      <textarea
+        id="address"
+        name="address"
+        rows="4"
+        autocomplete="street-address"
+        required
+      ></textarea>
+
+      <button type="submit">
+        Submit Enquiry
+      </button>
+
+    </form>
+
+    <p id="formMessage" class="form-message" role="status">
+      Note: Online order submission is not connected yet.
+      This form is currently a front-end enquiry demo.
+    </p>
+
+  </main>
+
+  <script>
+
+    const params = new URLSearchParams(window.location.search);
+
+    const productName =
+      params.get("name") || "Product enquiry";
+
+    const productImage =
+      params.get("image") || "";
+
+    document.getElementById("productName").textContent =
+      productName;
+
+    if (productImage) {
+
+      document.getElementById("productImg").src =
+        productImage;
+
+    } else {
+
+      document.getElementById("productImg").hidden = true;
+
+    }
+
+    document.getElementById("orderForm").addEventListener(
+      "submit",
+      (event) => {
+
+        event.preventDefault();
+
+        document.getElementById("formMessage").textContent =
+          "Your details have been entered, but this website is not yet connected to an order server. No order has been sent or saved. Please call 8294891066 or 7739233551 to confirm your enquiry.";
+
+        document.getElementById("formMessage").classList.add("warning");
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>
-
