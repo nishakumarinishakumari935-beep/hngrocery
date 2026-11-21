@@ -471,7 +471,39 @@ document.getElementById("currentYear").textContent =
 new Date().getFullYear();
 
 </script>
+<!-- HN AI BUTTON --><a href="hn-ai.html" class="hn-ai-button">
+    🤖 Ask HN AI
+</a><style>
+.hn-ai-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #174d2b;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 35px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 9999;
+    transition: 0.3s;
+}
 
+.hn-ai-button:hover {
+    background: #26733e;
+    transform: scale(1.05);
+}
+
+@media (max-width: 500px) {
+    .hn-ai-button {
+        right: 12px;
+        bottom: 15px;
+        padding: 12px 17px;
+        font-size: 14px;
+    }
+}
+</style>
 
 </body>
   </html>
