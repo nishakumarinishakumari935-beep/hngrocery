@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HN AI | HN ENTERPRISES</title><style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #f4f7f4;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        background: #174d2b;
+        color: white;
+        padding: 18px 15px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
+
+    header p {
+        font-size: 13px;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 12px;
+        color: white;
+        text-decoration: none;
+        border: 1px solid white;
+        padding: 7px 15px;
+        border-radius: 20px;
+    }
+
+    .container {
+        width: 95%;
+        max-width: 750px;
+        margin: 25px auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.10);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        max-height: 680px;
+    }
+
+    .ai-heading {
+        background: #e7f3e9;
+        padding: 17px;
+        text-align: center;
+    }
+
+    .ai-heading h2 {
+        color: #174d2b;
+        font-size: 21px;
+    }
+
+    .ai-heading p {
+        color: #555;
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    #chatBox {
+        padding: 18px;
+        flex: 1;
+        overflow-y: auto;
+        min-height: 300px;
+    }
+
+    .message {
+        padding: 12px 15px;
+        margin-bottom: 13px;
+        max-width: 85%;
+        border-radius: 12px;
+        line-height: 1.5;
+        font-size: 14px;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+
+    .bot {
+        background: #e8f2e9;
+        color: #222;
+        margin-right: auto;
+        border-bottom-left-radius: 2px;
+    }
+
+    .user {
+        background: #174d2b;
+        color: white;
+        margin-left: auto;
+        border-bottom-right-radius: 2px;
+    }
+
+    .input-area {
+        display: flex;
+        gap: 8px;
+        padding: 13px;
+        border-top: 1px solid #ddd;
+        background: #fff;
+    }
+
+    #userInput {
+        flex: 1;
+        min-width: 0;
+        padding: 13px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    #sendBtn {
+        background: #174d2b;
+        color: white;
+        border: none;
+        padding: 0 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    #sendBtn:hover {
+        background: #236c3d;
+    }
+
+    .quick-questions {
+        padding: 0 13px 13px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+    }
+
+    .quick-questions button {
+        background: #f0f5f0;
+        border: 1px solid #b7cdbb;
+        color: #174d2b;
+        padding: 8px 11px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        color: #666;
+        font-size: 12px;
+    }
+
+    @media (max-width: 500px) {
+        .container {
+            margin: 12px auto;
+            max-height: 75vh;
+        }
+
+        #chatBox {
+            min-height: 250px;
+        }
+
+        .message {
+            max-width: 92%;
+        }
+
+        #sendBtn {
+            padding: 0 15px;
+        }
+    }
+</style>
+
+</head><body><header>
+    <h1>HN ENTERPRISES</h1>
+    <p>Quality Products • Trusted Service</p>
+    <a href="index.html" class="back">← Back to Home</a>
+</header><div class="container"><div class="ai-heading">
+    <h2>🤖 Welcome to HN AI</h2>
+    <p>Ask us anything about our company, products and orders.</p>
+</div>
+
+<div id="chatBox">
+    <div class="message bot">
+        नमस्ते! 🙏 HN ENTERPRISES में आपका स्वागत है।
+
+        मैं HN AI Assistant हूँ। आप मुझसे हमारे मसालों, कीमत, ऑर्डर, पेमेंट और डिलीवरी के बारे में सवाल पूछ सकते हैं।
+
+        आप हिंदी, English या Hinglish में सवाल पूछ सकते हैं।
+    </div>
+</div>
+
+<div class="quick-questions">
+    <button onclick="quickAsk('आपकी कंपनी क्या काम करती है?')">Company Details</button>
+    <button onclick="quickAsk('आपके products कौन-कौन से हैं?')">Our Products</button>
+    <button onclick="quickAsk('एक पैकेट की कीमत कितनी है?')">Product Price</button>
+    <button onclick="quickAsk('Minimum order quantity क्या है?')">Minimum Order</button>
+    <button onclick="quickAsk('Delivery कितने दिनों में होगी?')">Delivery</button>
+    <button onclick="quickAsk('आपसे contact कैसे करें?')">Contact Us</button>
+</div>
+
+<div class="input-area">
+    <input
+        type="text"
+        id="userInput"
+        placeholder="अपना सवाल यहाँ लिखें..."
+        onkeydown="if(event.key === 'Enter') sendMessage()"
+    >
+    <button id="sendBtn" onclick="sendMessage()">Send</button>
+</div>
+
+</div><footer>
+    © <span id="year"></span> HN ENTERPRISES. All Rights Reserved.
+</footer><script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const chatBox = document.getElementById("chatBox");
+    const userInput = document.getElementById("userInput");
+
+    function addMessage(message, sender) {
+        const div = document.createElement("div");
+        div.className = "message " + sender;
+        div.textContent = message;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function quickAsk(question) {
+        userInput.value = question;
+        sendMessage();
+    }
+
+    function sendMessage() {
+        const question = userInput.value.trim();
+
+        if (question === "") {
+            return;
+        }
+
+        addMessage(question, "user");
+        userInput.value = "";
+
+        const answer = getAIAnswer(question);
+
+        setTimeout(function() {
+            addMessage(answer, "bot");
+        }, 400);
+    }
+
+    function getAIAnswer(question) {
+        const q = question.toLowerCase();
+
+        if (
+            q.includes("hello") ||
+            q.includes("hi") ||
+            q.includes("नमस्ते") ||
+            q.includes("namaste")
+        ) {
+            return "नमस्ते! 🙏 HN ENTERPRISES में आपका स्वागत है। बताइए, मैं आपकी क्या मदद कर सकता हूँ?";
+        }
+
+        if (
+            q.includes("company") ||
+            q.includes("कंपनी") ||
+            q.includes("enterprise") ||
+            q.includes("about")
+        ) {
+            return "HN ENTERPRISES एक product packing business है, जो बिहार में स्थित है। हमारी प्राथमिकता Quality Products और Trusted Service है।";
+        }
+
+        if (
+            q.includes("product") ||
+            q.includes("मसाला") ||
+            q.includes("masala") ||
+            q.includes("spice")
+        ) {
+            return "HN ENTERPRISES में मसालों से संबंधित उत्पाद उपलब्ध हैं। हमारी वेबसाइट पर अभी Garam Masala की तस्वीरें दिखाई गई हैं। अन्य उत्पादों की उपलब्धता के लिए हमसे संपर्क करें।";
+        }
+
+        if (
+            q.includes("price") ||
+            q.includes("कीमत") ||
+            q.includes("दाम") ||
+            q.includes("rate")
+        ) {
+            return "वेबसाइट पर Garam Masala की दिखाई गई कीमत ₹80 प्रति 100 ग्राम पैकेट है। अन्य उत्पादों की कीमत अलग हो सकती है। ऑर्डर से पहले कीमत की पुष्टि कर लें।";
+        }
+
+        if (
+            q.includes("minimum") ||
+            q.includes("कम से कम") ||
+            q.includes("मिनिमम") ||
+            q.includes("quantity") ||
+            q.includes("कितने packet")
+        ) {
+            return "हमारी वेबसाइट के वर्तमान ऑर्डर नियम के अनुसार न्यूनतम ऑर्डर 50 पैकेट है। प्रत्येक पैकेट 100 ग्राम का है।";
+        }
+
+        if (
+            q.includes("delivery") ||
+            q.includes("डिलीवरी") ||
+            q.includes("कब मिलेगा") ||
+            q.includes("कितने दिन")
+        ) {
+            return "ऑर्डर की पुष्टि होने के बाद अनुमानित डिलीवरी समय लगभग 10 दिन है। वास्तविक समय आपके स्थान और ऑर्डर की स्थिति पर निर्भर करेगा।";
+        }
+
+        if (
+            q.includes("payment") ||
+            q.includes("पेमेंट") ||
+            q.includes("भुगतान") ||
+            q.includes("upi") ||
+            q.includes("gpay") ||
+            q.includes("phonepe")
+        ) {
+            return "ऑनलाइन पेमेंट सुविधा अभी वेबसाइट से कनेक्ट नहीं है। कृपया पेमेंट करने से पहले हमारी टीम से पुष्टि करें।";
+        }
+
+        if (
+            q.includes("contact") ||
+            q.includes("फोन") ||
+            q.includes("mobile") ||
+            q.includes("number") ||
+            q.includes("संपर्क")
+        ) {
+            return "आप HN ENTERPRISES से इन नंबरों पर संपर्क कर सकते हैं:\n8294891066\n7739233551\n9661238328\n\nEmail: hnenterprises7739@gmail.com";
+        }
+
+        if (
+            q.includes("address") ||
+            q.includes("पता") ||
+            q.includes("कहाँ") ||
+            q.includes("location")
+        ) {
+            return "HN ENTERPRISES का पता:\nNirala Nagar, Siwan, Bihar – 841226.";
+        }
+
+        if (
+            q.includes("order") ||
+            q.includes("ऑर्डर") ||
+            q.includes("खरीदना") ||
+            q.includes("कैसे खरीदें")
+        ) {
+            return "ऑर्डर करने के लिए वेबसाइट के Home Page पर जाएँ। Product के नीचे Order Now बटन दबाएँ। फिर अपना नाम, मोबाइल नंबर, पता और कम से कम 50 पैकेट की मात्रा भरें। अभी ऑर्डर WhatsApp enquiry के रूप में भेजा जाता है।";
+        }
+
+        if (
+            q.includes("owner") ||
+            q.includes("मालिक") ||
+            q.includes("nisha")
+        ) {
+            return "HN ENTERPRISES की Owner Ms. Nisha Kumari हैं।";
+        }
+
+        return "माफ कीजिए, मुझे इस सवाल का सही जवाब अभी उपलब्ध नहीं है। 🙏 कृपया हमारी टीम से संपर्क करें:\n8294891066\n7739233551\n9661238328\n\nEmail: hnenterprises7739@gmail.com";
+    }
+</script></body>
+  </html>
