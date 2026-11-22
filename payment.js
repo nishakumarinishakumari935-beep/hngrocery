@@ -1,194 +1,421 @@
- /* HN ENTERPRISES PAYMENT SYSTEM */
+/* HN ENTERPRISES RAZORPAY PAYMENT SYSTEM */
 
+const API_URL = "https://hn-payment-backend.onrender.com";
 
 /* CURRENT YEAR */
 
-document.getElementById("currentYear").textContent =
-new Date().getFullYear();
+const yearElement = document.getElementById("currentYear");
 
+if (yearElement) {
+yearElement.textContent = new Date().getFullYear();
+}
 
 /* GET ORDER DETAILS */
 
 let order;
 
 try {
-
-order = JSON.parse(
-localStorage.getItem("hnOrder")
-);
-
-} catch(error) {
-
+order = JSON.parse(localStorage.getItem("hnOrder"));
+} catch (error) {
 order = null;
-
 }
-
 
 /* CHECK ORDER */
 
 if (!order) {
-
 alert("Order details not found. Please place your order again.");
-
 window.location.replace("order.html");
 
 } else {
 
-
 /* DISPLAY ORDER DETAILS */
 
 document.getElementById("paymentImage").src =
-order.productImage || "images/G1.jpeg";
+    order.productImage || "images/G1.jpeg";
 
 document.getElementById("paymentProduct").textContent =
-order.productName;
+    order.productName;
 
 document.getElementById("paymentPrice").textContent =
-order.price;
+    order.price;
 
 document.getElementById("paymentQuantity").textContent =
-order.quantity;
+    order.quantity;
 
 document.getElementById("customerName").textContent =
-order.customerName;
+    order.customerName;
 
 document.getElementById("customerMobile").textContent =
-order.mobile;
+    order.mobile;
 
 document.getElementById("customerAddress").textContent =
-order.address;
+    order.address;
 
 document.getElementById("paymentTotal").textContent =
-Number(order.totalAmount).toFixed(2);
+    Number(order.totalAmount).toFixed(2);
 
 
 /* FORMAT DATES */
 
 function formatDate(dateValue) {
+    const date = new Date(dateValue);
 
-const date = new Date(dateValue);
+    if (isNaN(date.getTime())) {
+        return "Not available";
+    }
 
-return date.toLocaleDateString("en-IN", {
-
-day: "2-digit",
-month: "long",
-year: "numeric"
-
-});
-
+    return date.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    });
 }
 
 document.getElementById("orderDate").textContent =
-formatDate(order.orderDate);
+    formatDate(order.orderDate);
 
 document.getElementById("deliveryDate").textContent =
-formatDate(order.deliveryDate);
+    formatDate(order.deliveryDate);
 
 
-/* PAYMENT METHOD */
+/* PAYMENT ELEMENTS */
 
 const paymentOptions =
-document.querySelectorAll('input[name="payment"]');
+    document.querySelectorAll('input[name="payment"]');
 
 const paymentMessage =
-document.getElementById("paymentMessage");
+    document.getElementById("paymentMessage");
 
 const confirmButton =
-document.getElementById("confirmPayment");
+    document.getElementById("confirmPayment");
 
 
 /* UPDATE PAYMENT MESSAGE */
 
 paymentOptions.forEach(function(option) {
 
-option.addEventListener("change", function() {
+    option.addEventListener("change", function() {
 
-if (this.value === "COD") {
+        if (this.value === "COD") {
 
-paymentMessage.textContent =
-"Cash on Delivery: Pay when your order arrives.";
+            paymentMessage.textContent =
+                "Cash on Delivery: Pay when your order arrives.";
 
-confirmButton.textContent =
-"Confirm Cash on Delivery Order";
+            confirmButton.textContent =
+                "Confirm Cash on Delivery Order";
 
-}
+        }
 
-else if (this.value === "UPI") {
+        else if (this.value === "UPI") {
 
-paymentMessage.textContent =
-"UPI payment through Google Pay, PhonePe or Paytm will be available after secure payment gateway setup.";
+            paymentMessage.textContent =
+                "Pay securely using UPI through Razorpay Test Checkout.";
 
-confirmButton.textContent =
-"Continue to UPI Payment";
+            confirmButton.textContent =
+                "Continue to UPI Payment";
 
-}
+        }
 
-else if (this.value === "CARD") {
+        else if (this.value === "CARD") {
 
-paymentMessage.textContent =
-"Debit and Credit Card payments will be available after secure payment gateway setup.";
+            paymentMessage.textContent =
+                "Pay securely using Debit or Credit Card through Razorpay Test Checkout.";
 
-confirmButton.textContent =
-"Continue to Card Payment";
+            confirmButton.textContent =
+                "Continue to Card Payment";
 
-}
+        }
+
+    });
 
 });
 
-});
+
+/* COD ORDER */
+
+function confirmCOD() {
+
+    const confirmedOrder = {
+        ...order,
+
+        paymentMethod: "Cash on Delivery",
+        paymentStatus: "Pay on Delivery",
+        orderStatus: "Pending Confirmation"
+    };
+
+    localStorage.setItem(
+        "hnOrder",
+        JSON.stringify(confirmedOrder)
+    );
+
+    localStorage.setItem(
+        "hnLastOrder",
+        JSON.stringify(confirmedOrder)
+    );
+
+    window.location.href = "success.html";
+}
 
 
-/* CONFIRM PAYMENT */
+/* RAZORPAY ONLINE PAYMENT */
+
+async function startRazorpayPayment(selectedPayment) {
+
+    try {
+
+        confirmButton.disabled = true;
+        confirmButton.textContent = "Connecting to Payment Gateway...";
+
+        const totalAmount = Number(order.totalAmount);
+
+        if (!Number.isFinite(totalAmount) || totalAmount <= 0) {
+            throw new Error("Invalid order amount.");
+        }
+
+        // Convert rupees into paise
+
+        const amountInPaise = Math.round(totalAmount * 100);
+
+        // CREATE RAZORPAY ORDER
+
+        const response = await fetch(
+            API_URL + "/create-order",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    amount: amountInPaise
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(
+                result.message || "Unable to create payment order."
+            );
+        }
+
+
+        // RAZORPAY CHECKOUT OPTIONS
+
+        const options = {
+
+            key: result.keyId,
+
+            amount: result.amount,
+
+            currency: result.currency,
+
+            name: "HN ENTERPRISES",
+
+            description: "Order Payment",
+
+            order_id: result.orderId,
+
+            prefill: {
+                name: order.customerName,
+                contact: order.mobile
+            },
+
+            notes: {
+                product: order.productName,
+                quantity: String(order.quantity)
+            },
+
+            theme: {
+                color: "#8B4513"
+            },
+
+
+            // PAYMENT SUCCESS HANDLER
+
+            handler: async function(paymentResponse) {
+
+                try {
+
+                    paymentMessage.textContent =
+                        "Verifying your payment...";
+
+                    const verifyResponse = await fetch(
+                        API_URL + "/verify-payment",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                razorpay_order_id:
+                                    paymentResponse.razorpay_order_id,
+
+                                razorpay_payment_id:
+                                    paymentResponse.razorpay_payment_id,
+
+                                razorpay_signature:
+                                    paymentResponse.razorpay_signature
+                            })
+                        }
+                    );
+
+                    const verifyResult =
+                        await verifyResponse.json();
+
+                    if (!verifyResponse.ok || !verifyResult.success) {
+
+                        throw new Error(
+                            "Payment verification failed."
+                        );
+                    }
+
+
+                    // SAVE VERIFIED ORDER
+
+                    const paidOrder = {
+
+                        ...order,
+
+                        paymentMethod: selectedPayment === "UPI"
+                            ? "UPI"
+                            : "Card / Online",
+
+                        paymentStatus: "Paid",
+
+                        orderStatus: "Payment Successful",
+
+                        razorpayOrderId:
+                            paymentResponse.razorpay_order_id,
+
+                        razorpayPaymentId:
+                            paymentResponse.razorpay_payment_id
+
+                    };
+
+                    localStorage.setItem(
+                        "hnOrder",
+                        JSON.stringify(paidOrder)
+                    );
+
+                    localStorage.setItem(
+                        "hnLastOrder",
+                        JSON.stringify(paidOrder)
+                    );
+
+                    alert("Payment successful! Thank you.");
+
+                    window.location.href = "success.html";
+
+                } catch (error) {
+
+                    alert(
+                        "Payment verification error: " + error.message
+                    );
+
+                    confirmButton.disabled = false;
+
+                    confirmButton.textContent =
+                        "Try Again";
+                }
+
+            },
+
+
+            modal: {
+                ondismiss: function() {
+
+                    confirmButton.disabled = false;
+
+                    confirmButton.textContent =
+                        "Continue to Payment";
+
+                    paymentMessage.textContent =
+                        "Payment was not completed. You can try again.";
+                }
+            }
+
+        };
+
+
+        // OPEN RAZORPAY CHECKOUT
+
+        const razorpayCheckout =
+            new Razorpay(options);
+
+        razorpayCheckout.on("payment.failed", function(response) {
+
+            alert(
+                "Payment failed: " +
+                response.error.description
+            );
+
+            confirmButton.disabled = false;
+
+            confirmButton.textContent =
+                "Try Payment Again";
+
+        });
+
+        razorpayCheckout.open();
+
+    }
+
+    catch (error) {
+
+        alert("Payment Error: " + error.message);
+
+        confirmButton.disabled = false;
+
+        confirmButton.textContent =
+            "Continue to Payment";
+
+    }
+
+}
+
+
+/* CONFIRM BUTTON */
 
 confirmButton.addEventListener("click", function() {
 
-const selectedPayment =
-document.querySelector('input[name="payment"]:checked').value;
+    const selectedOption =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        );
 
+    if (!selectedOption) {
+        alert("Please select a payment method.");
+        return;
+    }
 
-/* COD PAYMENT */
+    const selectedPayment = selectedOption.value;
 
-if (selectedPayment === "COD") {
+    if (selectedPayment === "COD") {
 
-const confirmedOrder = {
+        confirmCOD();
 
-...order,
+    }
 
-paymentMethod: "Cash on Delivery",
+    else if (
+        selectedPayment === "UPI" ||
+        selectedPayment === "CARD"
+    ) {
 
-paymentStatus: "Pay on Delivery",
+        if (typeof Razorpay === "undefined") {
 
-orderStatus: "Pending Confirmation"
+            alert("Razorpay Checkout is not loaded. Please refresh the page.");
 
-};
+            return;
+        }
 
-localStorage.setItem(
-"hnOrder",
-JSON.stringify(confirmedOrder)
-);
+        startRazorpayPayment(selectedPayment);
 
-localStorage.setItem(
-"hnLastOrder",
-JSON.stringify(confirmedOrder)
-);
-
-window.location.href = "success.html";
-
-return;
-
-}
-
-
-/* ONLINE PAYMENT */
-
-if (selectedPayment === "UPI" ||
-selectedPayment === "CARD") {
-
-alert(
-"Online payment gateway is not connected yet. Please select Cash on Delivery for now. UPI and Card payments will work after secure gateway integration."
-);
-
-}
+    }
 
 });
 
