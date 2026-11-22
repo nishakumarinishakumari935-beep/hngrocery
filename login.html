@@ -1,1 +1,46 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Customer Login | HN GROCERY</title><link rel="stylesheet" href="login.css"></head><body><div class="login-container"><div class="logo">
+    🛒
+</div>
 
+<h1>HN GROCERY</h1>
+
+<p class="subtitle">Welcome to HN GROCERY</p>
+
+<h2>Customer Login</h2>
+
+<form id="loginForm">
+
+    <label>Mobile Number</label>
+
+    <input
+        type="tel"
+        id="mobile"
+        placeholder="Enter your 10 digit mobile number"
+        maxlength="10"
+        pattern="[0-9]{10}"
+        required
+    >
+
+    <button type="submit" id="loginBtn">
+        Continue
+    </button>
+
+</form>
+
+<p id="message"></p>
+
+<div class="divider">OR</div>
+
+<p class="register-text">
+    New Customer?
+    <a href="register.html">Create Account</a>
+</p>
+
+<p class="footer">
+    Quality Products • Trusted Service
+</p>
+
+</div><script src="login.js"></script></body>
+</html>
