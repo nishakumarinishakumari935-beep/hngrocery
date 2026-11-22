@@ -147,8 +147,6 @@
 
 <body>
 
-<!-- HEADER -->
-
 <header class="site-header">
 
 <div class="header-row">
@@ -209,7 +207,7 @@ Price: ₹<span id="unitPrice">80</span> / 100g
 
 <p>
 Minimum Quantity:
-<span id="minimumQuantity">50</span> Packets
+<span id="minimumQuantity">10</span> Packets
 </p>
 
 </div>
@@ -227,7 +225,7 @@ Minimum Quantity:
 type="text"
 id="fullName"
 placeholder="Enter your full name"
-maxlength="1"
+maxlength="100"
 required>
 
 
@@ -238,7 +236,7 @@ type="tel"
 id="mobile"
 placeholder="Enter 10 digit mobile number"
 pattern="[6-9][0-9]{9}"
-maxlength="100"
+maxlength="10"
 required>
 
 
@@ -247,12 +245,14 @@ required>
 <input
 type="number"
 id="quantity"
-value="50"
-min="50"
+value="10"
+min="10"
 step="1"
 required>
 
 <small>
+Minimum order: 10 packets. No maximum quantity limit.
+<br>
 Each packet contains 100 grams.
 </small>
 
@@ -279,13 +279,13 @@ Price per packet:
 
 <p>
 Quantity:
-<strong id="displayQuantity">50</strong>
+<strong id="displayQuantity">10</strong>
 </p>
 
 <hr>
 
 <h3>
-Total Amount: ₹<span id="totalAmount">4000</span>
+Total Amount: ₹<span id="totalAmount">800</span>
 </h3>
 
 <p>
@@ -391,8 +391,10 @@ params.get("image") || "images/G1.jpeg";
 const productPrice =
 Number(params.get("price")) || 80;
 
-const minQty =
-Math.max(1, Number(params.get("minQty")) || 50);
+
+/* MINIMUM QUANTITY FIXED TO 10 */
+
+const minQty = 10;
 
 
 /* SHOW PRODUCT */
@@ -419,6 +421,7 @@ const quantityInput =
 document.getElementById("quantity");
 
 quantityInput.min = minQty;
+
 quantityInput.value = minQty;
 
 
@@ -476,13 +479,15 @@ return;
 
 const quantity = Number(quantityInput.value);
 
-if (!Number.isInteger(quantity) || quantity < minQty) {
 
-alert("Minimum quantity is " + minQty + " packets.");
+if (!Number.isSafeInteger(quantity) || quantity < minQty) {
+
+alert("Minimum quantity is 10 packets.");
 
 return;
 
 }
+
 
 const paymentMethod =
 document.querySelector(
@@ -542,4 +547,4 @@ alert("Unable to save order. Please try again.");
 </script>
 
 </body>
-  </html>
+</html>
