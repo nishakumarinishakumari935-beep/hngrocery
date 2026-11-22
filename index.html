@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,9 +31,13 @@
     overflow: hidden;
 }
 
+.gallery-image-box {
+    position: relative;
+}
+
 .gallery-card img {
     width: 100%;
-    height: 180px;
+    height: 190px;
     object-fit: contain;
     display: block;
     margin: auto;
@@ -43,6 +46,7 @@
 
 .gallery-card h3 {
     margin: 12px 0;
+    color: #174d2b;
 }
 
 .product-price {
@@ -56,6 +60,34 @@
     font-size: 13px;
     color: #666;
     font-weight: normal;
+}
+
+.image-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: rgba(0,0,0,0.65);
+    color: white;
+    font-size: 24px;
+    width: 35px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.image-btn.prev {
+    left: 5px;
+}
+
+.image-btn.next {
+    right: 5px;
+}
+
+.image-counter {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
 }
 
 .order-now-btn {
@@ -74,8 +106,6 @@
     background: #126b40;
     transform: translateY(-2px);
 }
-
-/* MAP */
 
 .map-wrap iframe {
     width: 100%;
@@ -113,10 +143,14 @@
         font-size: 13px;
     }
 
+    .image-btn {
+        width: 28px;
+        height: 32px;
+        font-size: 19px;
+    }
 }
 
 </style>
-
 </head>
 
 <body>
@@ -147,15 +181,12 @@ Quality Products • Trusted Service
 <span>Call us:</span>
 
 <a href="tel:8294891066">8294891066</a>
-
 <a href="tel:7739233551">7739233551</a>
-
 <a href="tel:9661238328">9661238328</a>
 
 </div>
 
 </div>
-
 </header>
 
 
@@ -186,7 +217,7 @@ Quality Products • Trusted Service
 </div>
 
 <div class="slide">
-<img src="images/masala image - Copy.jfif" alt="Spices">
+<img src="images/masala image.jfif" alt="Spices">
 </div>
 
 <div class="slide">
@@ -208,7 +239,6 @@ Quality Products • Trusted Service
 </div>
 
 <button class="slider-control prev" type="button">‹</button>
-
 <button class="slider-control next" type="button">›</button>
 
 </section>
@@ -232,7 +262,6 @@ Quality Products • Trusted Service
 business based in Bihar, specializing in spices.
 
 </p>
-
 
 <div class="info-grid">
 
@@ -279,33 +308,21 @@ business based in Bihar, specializing in spices.
 
 </div>
 
-
 <div class="product-grid">
 
-<div class="product-card">Cumin (Zeera)</div>
-
-<div class="product-card">Cloves (Laung)</div>
-
-<div class="product-card">Black Pepper (Gol Mirch)</div>
-
-<div class="product-card">Green Cardamom (Elaichi)</div>
-
-<div class="product-card">Black Cardamom (Badi Elaichi)</div>
-
-<div class="product-card">Cinnamon (Dalchini)</div>
-
-<div class="product-card">Star Anise (Star Phool)</div>
-
-<div class="product-card">Bay Leaves (Tej Patta)</div>
-
-<div class="product-card">Red Chilli (Lal Mirch)</div>
+<div class="product-card">Garam Masala</div>
+<div class="product-card">Red Mirch</div>
+<div class="product-card">Dhaniya</div>
+<div class="product-card">Mustard</div>
+<div class="product-card">Tejpatta</div>
+<div class="product-card">Zeera</div>
 
 </div>
 
 </section>
 
 
-<!-- GALLERY -->
+<!-- PRODUCT GALLERY -->
 
 <section id="gallery" class="section gallery-section">
 
@@ -323,14 +340,24 @@ business based in Bihar, specializing in spices.
 <div class="gallery-grid">
 
 
-<!-- PRODUCT 1 -->
+<!-- GARAM MASALA -->
 
 <article class="gallery-card">
 
+<div class="gallery-image-box">
+
 <img
+id="image-garam"
 src="images/G1.jpeg"
 alt="Garam Masala"
 loading="lazy">
+
+<button class="image-btn prev" onclick="changeImage('garam',-1)">‹</button>
+<button class="image-btn next" onclick="changeImage('garam',1)">›</button>
+
+</div>
+
+<p class="image-counter" id="count-garam">1 / 3</p>
 
 <h3>Garam Masala</h3>
 
@@ -338,45 +365,180 @@ loading="lazy">
 ₹80 <span class="price-unit">/ 100g</span>
 </p>
 
-<a
-class="order-now-btn"
+<a class="order-now-btn"
 href="order.html?name=Garam%20Masala&image=images%2FG1.jpeg&price=80&minQty=50">
-
 Order Now
-
 </a>
 
 </article>
 
 
-<!-- PRODUCT 2 -->
+<!-- RED MIRCH -->
 
 <article class="gallery-card">
 
+<div class="gallery-image-box">
+
 <img
-src="images/g14.jpeg"
-alt="Garam Masala"
+id="image-red"
+src="images/IMG_20260128_114819.jpg"
+alt="Red Mirch"
 loading="lazy">
 
-<h3>Garam Masala</h3>
+<button class="image-btn prev" onclick="changeImage('red',-1)">‹</button>
+<button class="image-btn next" onclick="changeImage('red',1)">›</button>
+
+</div>
+
+<p class="image-counter" id="count-red">1 / 3</p>
+
+<h3>Red Mirch</h3>
 
 <p class="product-price">
-₹80 <span class="price-unit">/ 100g</span>
+₹50 <span class="price-unit">/ 100g</span>
 </p>
 
-<a
-class="order-now-btn"
-href="order.html?name=Garam%20Masala&image=images%2Fg14.jpeg&price=80&minQty=50">
-
+<a class="order-now-btn"
+href="order.html?name=Red%20Mirch&image=images%2FIMG_20260128_114819.jpg&price=50&minQty=100">
 Order Now
+</a>
 
+</article>
+
+
+<!-- DHANIYA -->
+
+<article class="gallery-card">
+
+<div class="gallery-image-box">
+
+<img
+id="image-dhaniya"
+src="images/IMG_20260126_162305.jpg"
+alt="Dhaniya"
+loading="lazy">
+
+<button class="image-btn prev" onclick="changeImage('dhaniya',-1)">‹</button>
+<button class="image-btn next" onclick="changeImage('dhaniya',1)">›</button>
+
+</div>
+
+<p class="image-counter" id="count-dhaniya">1 / 3</p>
+
+<h3>Dhaniya</h3>
+
+<p class="product-price">
+₹60 <span class="price-unit">/ 100g</span>
+</p>
+
+<a class="order-now-btn"
+href="order.html?name=Dhaniya&image=images%2FIMG_20260126_162305.jpg&price=60&minQty=100">
+Order Now
+</a>
+
+</article>
+
+
+<!-- MUSTARD -->
+
+<article class="gallery-card">
+
+<div class="gallery-image-box">
+
+<img
+id="image-mustard"
+src="images/IMG_20260126_164016.jpg"
+alt="Mustard"
+loading="lazy">
+
+<button class="image-btn prev" onclick="changeImage('mustard',-1)">‹</button>
+<button class="image-btn next" onclick="changeImage('mustard',1)">›</button>
+
+</div>
+
+<p class="image-counter" id="count-mustard">1 / 3</p>
+
+<h3>Mustard</h3>
+
+<p class="product-price">
+₹40 <span class="price-unit">/ 100g</span>
+</p>
+
+<a class="order-now-btn"
+href="order.html?name=Mustard&image=images%2FIMG_20260126_164016.jpg&price=40&minQty=100">
+Order Now
+</a>
+
+</article>
+
+
+<!-- TEJPATTA -->
+
+<article class="gallery-card">
+
+<div class="gallery-image-box">
+
+<img
+id="image-tejpatta"
+src="images/IMG_20260126_162606.jpg"
+alt="Tejpatta"
+loading="lazy">
+
+<button class="image-btn prev" onclick="changeImage('tejpatta',-1)">‹</button>
+<button class="image-btn next" onclick="changeImage('tejpatta',1)">›</button>
+
+</div>
+
+<p class="image-counter" id="count-tejpatta">1 / 3</p>
+
+<h3>Tejpatta</h3>
+
+<p class="product-price">
+₹30 <span class="price-unit">/ 100g</span>
+</p>
+
+<a class="order-now-btn"
+href="order.html?name=Tejpatta&image=images%2FIMG_20260126_162606.jpg&price=30&minQty=100">
+Order Now
+</a>
+
+</article>
+
+
+<!-- ZEERA -->
+
+<article class="gallery-card">
+
+<div class="gallery-image-box">
+
+<img
+id="image-zeera"
+src="images/IMG_20260128_114757.jpg"
+alt="Zeera"
+loading="lazy">
+
+<button class="image-btn prev" onclick="changeImage('zeera',-1)">‹</button>
+<button class="image-btn next" onclick="changeImage('zeera',1)">›</button>
+
+</div>
+
+<p class="image-counter" id="count-zeera">1 / 3</p>
+
+<h3>Zeera</h3>
+
+<p class="product-price">
+₹60 <span class="price-unit">/ 100g</span>
+</p>
+
+<a class="order-now-btn"
+href="order.html?name=Zeera&image=images%2FIMG_20260128_114757.jpg&price=60&minQty=100">
+Order Now
 </a>
 
 </article>
 
 
 </div>
-
 </section>
 
 
@@ -392,7 +554,6 @@ Order Now
 
 </div>
 
-
 <div class="contact-card">
 
 <p>
@@ -400,13 +561,10 @@ Order Now
 <strong>Phone:</strong>
 
 <a href="tel:8294891066">8294891066</a> ·
-
 <a href="tel:7739233551">7739233551</a> ·
-
 <a href="tel:9661238328">9661238328</a>
 
 </p>
-
 
 <p>
 
@@ -418,7 +576,6 @@ hnenterprises7739@gmail.com
 
 </p>
 
-
 <p>
 
 <strong>Address:</strong>
@@ -428,7 +585,6 @@ Nirala Nagar, Siwan, Bihar – 841226
 </p>
 
 </div>
-
 
 <div class="map-wrap">
 
@@ -442,7 +598,6 @@ loading="lazy">
 
 </section>
 
-
 </main>
 
 
@@ -451,29 +606,22 @@ loading="lazy">
 <footer class="site-footer">
 
 <p>
-
 © <span id="currentYear"></span>
-
 HN ENTERPRISES. All rights reserved.
-
 </p>
 
 </footer>
 
 
-<!-- JAVASCRIPT -->
+<!-- HN AI BUTTON -->
 
-<script src="script.js"></script>
+<a href="hn-ai.html" class="hn-ai-button">
+🤖 Ask HN AI
+</a>
 
-<script>
 
-document.getElementById("currentYear").textContent =
-new Date().getFullYear();
+<style>
 
-</script>
-<!-- HN AI BUTTON --><a href="hn-ai.html" class="hn-ai-button">
-    🤖 Ask HN AI
-</a><style>
 .hn-ai-button {
     position: fixed;
     right: 20px;
@@ -495,15 +643,124 @@ new Date().getFullYear();
     transform: scale(1.05);
 }
 
-@media (max-width: 500px) {
+@media(max-width:500px) {
+
     .hn-ai-button {
         right: 12px;
         bottom: 15px;
         padding: 12px 17px;
         font-size: 14px;
     }
+
 }
+
 </style>
 
+
+<!-- JAVASCRIPT -->
+
+<script src="script.js"></script>
+
+<script>
+
+/* CURRENT YEAR */
+
+document.getElementById("currentYear").textContent =
+new Date().getFullYear();
+
+
+/* PRODUCT IMAGE SLIDERS */
+
+const productImages = {
+
+garam: [
+"images/G1.jpeg",
+"images/g14.jpeg",
+"images/masala image.jfif"
+],
+
+red: [
+"images/IMG_20260128_114819.jpg",
+"images/IMG_20260128_114826.jpg",
+"images/IMG_20260128_114831.jpg"
+],
+
+dhaniya: [
+"images/IMG_20260126_162305.jpg",
+"images/IMG_20260126_162312.jpg",
+"images/IMG_20260126_162319.jpg"
+],
+
+mustard: [
+"images/IMG_20260126_164016.jpg",
+"images/IMG_20260126_164022.jpg",
+"images/IMG_20260126_164029.jpg"
+],
+
+tejpatta: [
+"images/IMG_20260126_162606.jpg",
+"images/IMG_20260126_162613.jpg",
+"images/IMG_20260126_162620.jpg"
+],
+
+zeera: [
+"images/IMG_20260128_114757.jpg",
+"images/IMG_20260128_114802.jpg",
+"images/IMG_20260128_114808.jpg"
+]
+
+};
+
+
+const currentImageIndex = {
+garam: 0,
+red: 0,
+dhaniya: 0,
+mustard: 0,
+tejpatta: 0,
+zeera: 0
+};
+
+
+function changeImage(product, direction) {
+
+const images = productImages[product];
+
+currentImageIndex[product] += direction;
+
+if (currentImageIndex[product] < 0) {
+currentImageIndex[product] = images.length - 1;
+}
+
+if (currentImageIndex[product] >= images.length) {
+currentImageIndex[product] = 0;
+}
+
+const index = currentImageIndex[product];
+
+document.getElementById("image-" + product).src =
+images[index];
+
+document.getElementById("count-" + product).textContent =
+(index + 1) + " / " + images.length;
+
+
+/* UPDATE ORDER BUTTON IMAGE */
+
+const card = document.getElementById("image-" + product)
+.closest(".gallery-card");
+
+const orderButton = card.querySelector(".order-now-btn");
+
+const params = new URLSearchParams(orderButton.href.split("?")[1]);
+
+params.set("image", images[index]);
+
+orderButton.href = "order.html?" + params.toString();
+
+}
+
+</script>
+
 </body>
-  </html>
+    </html>
