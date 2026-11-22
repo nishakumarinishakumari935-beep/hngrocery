@@ -4,18 +4,150 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Place Your Order | HN ENTERPRISES</title>
 
 <link rel="stylesheet" href="style.css">
-
 <link rel="stylesheet" href="order.css">
+
+<style>
+
+.order-container {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 15px;
+}
+
+.order-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+}
+
+.order-product {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 15px;
+    background: #f5f8f5;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.order-product img {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.order-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.order-form input,
+.order-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.order-form textarea {
+    min-height: 100px;
+}
+
+.order-total {
+    background: #f0f8f1;
+    padding: 18px;
+    border-radius: 9px;
+    margin-top: 20px;
+}
+
+.order-total h3 {
+    color: #198754;
+}
+
+.payment-options {
+    margin-top: 20px;
+    padding: 18px;
+    background: #f8f8f8;
+    border-radius: 10px;
+}
+
+.payment-options label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.payment-options input {
+    width: auto;
+    margin: 0;
+}
+
+.submit-order {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: #198754;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-order:hover {
+    background: #126b40;
+}
+
+.back-home {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #198754;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.delivery-date {
+    color: #198754;
+    font-weight: bold;
+}
+
+@media(max-width:500px) {
+
+    .order-box {
+        padding: 15px;
+    }
+
+    .order-product img {
+        width: 85px;
+        height: 85px;
+    }
+
+}
+
+</style>
 
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <header class="site-header">
 
@@ -63,15 +195,22 @@ Fill in your details to place an order with HN ENTERPRISES.
 
 <div class="order-product">
 
-<img id="productImage" src="images/G1.jpeg" alt="Selected Product">
+<img id="productImage"
+src="images/G1.jpeg"
+alt="Selected Product">
 
 <div>
 
 <h3 id="productName">Garam Masala</h3>
 
-<p>Price: ₹<span id="unitPrice">80</span> / 100g</p>
+<p>
+Price: ₹<span id="unitPrice">80</span> / 100g
+</p>
 
-<p>Minimum Quantity: 50 Packets</p>
+<p>
+Minimum Quantity:
+<span id="minimumQuantity">50</span> Packets
+</p>
 
 </div>
 
@@ -114,7 +253,7 @@ step="1"
 required>
 
 <small>
-Minimum order is 50 packets. Each packet contains 100 grams.
+Each packet contains 100 grams.
 </small>
 
 
@@ -131,6 +270,8 @@ required></textarea>
 
 <div class="order-total">
 
+<h3>Order Summary</h3>
+
 <p>
 Price per packet:
 <strong>₹<span id="displayPrice">80</span></strong>
@@ -144,40 +285,69 @@ Quantity:
 <hr>
 
 <h3>
-Total Amount:
-₹<span id="totalAmount">4000</span>
+Total Amount: ₹<span id="totalAmount">4000</span>
 </h3>
 
 <p>
-Estimated Delivery: 10 Days after order confirmation
+Delivery Date:
+<span class="delivery-date" id="deliveryDate"></span>
+</p>
+
+<p>
+Delivery is estimated 10 days after order date.
 </p>
 
 </div>
 
 
-<!-- PAYMENT NOTICE -->
+<!-- PAYMENT OPTIONS -->
 
-<div class="payment-notice">
+<div class="payment-options">
 
-<h3>Payment Information</h3>
+<h3>Select Payment Method</h3>
 
-<p>
-Online payment will be available after the company
-payment gateway is connected.
-</p>
+<label>
 
-<p>
-Your order enquiry will be sent to the company
-for confirmation. No payment will be marked
-as successful on this page.
-</p>
+<input
+type="radio"
+name="paymentMethod"
+value="COD"
+checked>
+
+<span>💵 Cash on Delivery (Pay when delivered)</span>
+
+</label>
+
+
+<label>
+
+<input
+type="radio"
+name="paymentMethod"
+value="UPI">
+
+<span>📱 UPI Payment (Google Pay / PhonePe / Paytm)</span>
+
+</label>
+
+
+<label>
+
+<input
+type="radio"
+name="paymentMethod"
+value="CARD">
+
+<span>💳 Debit / Credit Card</span>
+
+</label>
 
 </div>
 
 
 <button type="submit" class="submit-order">
 
-Send Order Enquiry on WhatsApp
+Continue to Payment →
 
 </button>
 
@@ -187,6 +357,8 @@ Send Order Enquiry on WhatsApp
 
 </main>
 
+
+<!-- FOOTER -->
 
 <footer class="site-footer">
 
@@ -198,8 +370,176 @@ HN ENTERPRISES. All rights reserved.
 </footer>
 
 
-<script src="order.js"></script>
+<!-- ORDER JAVASCRIPT -->
+
+<script>
+
+document.getElementById("currentYear").textContent =
+new Date().getFullYear();
+
+
+/* GET PRODUCT DETAILS FROM URL */
+
+const params = new URLSearchParams(window.location.search);
+
+const productName =
+params.get("name") || "Garam Masala";
+
+const productImage =
+params.get("image") || "images/G1.jpeg";
+
+const productPrice =
+Number(params.get("price")) || 80;
+
+const minQty =
+Math.max(1, Number(params.get("minQty")) || 50);
+
+
+/* SHOW PRODUCT */
+
+document.getElementById("productName").textContent =
+productName;
+
+document.getElementById("productImage").src =
+productImage;
+
+document.getElementById("unitPrice").textContent =
+productPrice;
+
+document.getElementById("displayPrice").textContent =
+productPrice;
+
+document.getElementById("minimumQuantity").textContent =
+minQty;
+
+
+/* QUANTITY */
+
+const quantityInput =
+document.getElementById("quantity");
+
+quantityInput.min = minQty;
+quantityInput.value = minQty;
+
+
+function updateTotal() {
+
+let quantity = Number(quantityInput.value);
+
+if (!Number.isFinite(quantity) || quantity < 0) {
+quantity = 0;
+}
+
+document.getElementById("displayQuantity").textContent =
+quantity;
+
+document.getElementById("totalAmount").textContent =
+(quantity * productPrice).toFixed(2);
+
+}
+
+quantityInput.addEventListener("input", updateTotal);
+
+updateTotal();
+
+
+/* DELIVERY DATE: 10 DAYS */
+
+const orderDate = new Date();
+
+const deliveryDate = new Date(orderDate);
+
+deliveryDate.setDate(deliveryDate.getDate() + 10);
+
+const formattedDate =
+deliveryDate.toLocaleDateString("en-IN", {
+day: "2-digit",
+month: "long",
+year: "numeric"
+});
+
+document.getElementById("deliveryDate").textContent =
+formattedDate;
+
+
+/* FORM SUBMISSION */
+
+document.getElementById("orderForm").addEventListener(
+"submit",
+function(event) {
+
+event.preventDefault();
+
+if (!this.reportValidity()) {
+return;
+}
+
+const quantity = Number(quantityInput.value);
+
+if (!Number.isInteger(quantity) || quantity < minQty) {
+
+alert("Minimum quantity is " + minQty + " packets.");
+
+return;
+
+}
+
+const paymentMethod =
+document.querySelector(
+'input[name="paymentMethod"]:checked'
+).value;
+
+
+const orderDetails = {
+
+customerName:
+document.getElementById("fullName").value.trim(),
+
+mobile:
+document.getElementById("mobile").value.trim(),
+
+address:
+document.getElementById("address").value.trim(),
+
+productName: productName,
+
+productImage: productImage,
+
+price: productPrice,
+
+quantity: quantity,
+
+totalAmount: quantity * productPrice,
+
+paymentMethod: paymentMethod,
+
+orderDate: orderDate.toISOString(),
+
+deliveryDate: deliveryDate.toISOString()
+
+};
+
+
+/* SAVE ORDER DETAILS */
+
+try {
+
+localStorage.setItem(
+"hnOrder",
+JSON.stringify(orderDetails)
+);
+
+window.location.href = "payment.html";
+
+} catch(error) {
+
+alert("Unable to save order. Please try again.");
+
+}
+
+});
+
+</script>
 
 </body>
-
-</html>
+  </html>
