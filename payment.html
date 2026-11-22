@@ -1,1 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment | HN ENTERPRISES</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="payment.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="header-row">
+
+<div class="company-text">
+
+<h1>HN ENTERPRISES</h1>
+
+<p class="tagline">
+Quality Products • Trusted Service
+</p>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main class="payment-container">
+
+<a href="order.html" class="back-link">
+← Back to Order
+</a>
+
+
+<div class="payment-box">
+
+<h2>Complete Your Payment</h2>
+
+<p class="subtitle">
+Thank you for choosing HN ENTERPRISES.
+</p>
+
+
+<!-- ORDER SUMMARY -->
+
+<div class="payment-summary">
+
+<h3>Order Summary</h3>
+
+<div class="summary-product">
+
+<img id="paymentImage"
+src="images/G1.jpeg"
+alt="Product">
+
+<div>
+
+<h3 id="paymentProduct">
+Garam Masala
+</h3>
+
+<p>
+Price: ₹<span id="paymentPrice">80</span> / 100g
+</p>
+
+<p>
+Quantity: <span id="paymentQuantity">50</span>
+Packets
+</p>
+
+</div>
+
+</div>
+
+
+<hr>
+
+<p>
+Customer:
+<strong id="customerName">-</strong>
+</p>
+
+<p>
+Mobile:
+<strong id="customerMobile">-</strong>
+</p>
+
+<p>
+Delivery Address:
+<strong id="customerAddress">-</strong>
+</p>
+
+<p>
+Order Date:
+<strong id="orderDate">-</strong>
+</p>
+
+<p>
+Expected Delivery:
+<strong id="deliveryDate">-</strong>
+</p>
+
+
+<hr>
+
+<h2 class="total-payment">
+
+Total Amount:
+₹<span id="paymentTotal">4000</span>
+
+</h2>
+
+</div>
+
+
+<!-- PAYMENT METHODS -->
+
+<div class="payment-methods">
+
+<h3>Select Payment Method</h3>
+
+
+<label class="payment-option">
+
+<input
+type="radio"
+name="payment"
+value="COD"
+checked>
+
+<span>💵 Cash on Delivery</span>
+
+</label>
+
+
+<label class="payment-option">
+
+<input
+type="radio"
+name="payment"
+value="UPI">
+
+<span>📱 UPI Payment</span>
+
+</label>
+
+
+<label class="payment-option">
+
+<input
+type="radio"
+name="payment"
+value="CARD">
+
+<span>💳 Debit / Credit Card</span>
+
+</label>
+
+
+</div>
+
+
+<div id="paymentMessage" class="payment-message">
+
+Cash on Delivery: Pay when your order arrives.
+
+</div>
+
+
+<button
+type="button"
+id="confirmPayment"
+class="confirm-payment-btn">
+
+Confirm Order
+
+</button>
+
+
+<p class="secure-note">
+
+🔒 Your order information is handled securely.
+
+</p>
+
+
+</div>
+
+</main>
+
+
+<footer class="site-footer">
+
+<p>
+© <span id="currentYear"></span>
+HN ENTERPRISES. All rights reserved.
+</p>
+
+</footer>
+
+
+<script src="payment.js"></script>
+
+</body>
+</html>
