@@ -222,11 +222,14 @@ async function startRazorpayPayment(selectedPayment) {
 
                 headers: {
                     "Content-Type": "application/json"
-                },
-
+                }, 
+              
                 body: JSON.stringify({
-                    amount: amountInPaise
-                })
+    amount: amountInPaise,
+    quantity: quantity
+})
+
+
 
             }
         );
