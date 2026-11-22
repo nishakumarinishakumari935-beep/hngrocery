@@ -1,32 +1,64 @@
- /* HN ENTERPRISES RAZORPAY PAYMENT SYSTEM */
+/* HN ENTERPRISES RAZORPAY PAYMENT SYSTEM */
 
 const API_URL = "https://hn-payment-backend.onrender.com";
+
+const MINIMUM_QUANTITY = 10;
+
 
 /* CURRENT YEAR */
 
 const yearElement = document.getElementById("currentYear");
 
 if (yearElement) {
-yearElement.textContent = new Date().getFullYear();
+    yearElement.textContent = new Date().getFullYear();
 }
+
 
 /* GET ORDER DETAILS */
 
 let order;
 
 try {
-order = JSON.parse(localStorage.getItem("hnOrder"));
+    order = JSON.parse(localStorage.getItem("hnOrder"));
 } catch (error) {
-order = null;
+    order = null;
 }
+
 
 /* CHECK ORDER */
 
 if (!order) {
-alert("Order details not found. Please place your order again.");
-window.location.replace("order.html");
+
+    alert("Order details not found. Please place your order again.");
+
+    window.location.replace("order.html");
 
 } else {
+
+
+/* VALIDATE ORDER */
+
+const quantity = Number(order.quantity);
+const price = Number(order.price);
+const totalAmount = Number(order.totalAmount);
+
+if (
+    !Number.isSafeInteger(quantity) ||
+    quantity < MINIMUM_QUANTITY ||
+    !Number.isFinite(price) ||
+    price <= 0 ||
+    !Number.isFinite(totalAmount) ||
+    totalAmount !== quantity * price
+) {
+
+    alert("Invalid order. Minimum quantity is 10 packets.");
+
+    window.location.replace("order.html");
+
+    throw new Error("Invalid order details.");
+
+}
+
 
 /* DISPLAY ORDER DETAILS */
 
@@ -37,10 +69,10 @@ document.getElementById("paymentProduct").textContent =
     order.productName;
 
 document.getElementById("paymentPrice").textContent =
-    order.price;
+    price;
 
 document.getElementById("paymentQuantity").textContent =
-    order.quantity;
+    quantity;
 
 document.getElementById("customerName").textContent =
     order.customerName;
@@ -52,12 +84,13 @@ document.getElementById("customerAddress").textContent =
     order.address;
 
 document.getElementById("paymentTotal").textContent =
-    Number(order.totalAmount).toFixed(2);
+    totalAmount.toFixed(2);
 
 
 /* FORMAT DATES */
 
 function formatDate(dateValue) {
+
     const date = new Date(dateValue);
 
     if (isNaN(date.getTime())) {
@@ -69,6 +102,7 @@ function formatDate(dateValue) {
         month: "long",
         year: "numeric"
     });
+
 }
 
 document.getElementById("orderDate").textContent =
@@ -109,7 +143,7 @@ paymentOptions.forEach(function(option) {
         else if (this.value === "UPI") {
 
             paymentMessage.textContent =
-                "Pay securely using UPI through Razorpay Test Checkout.";
+                "Pay securely using UPI through Razorpay.";
 
             confirmButton.textContent =
                 "Continue to UPI Payment";
@@ -119,7 +153,7 @@ paymentOptions.forEach(function(option) {
         else if (this.value === "CARD") {
 
             paymentMessage.textContent =
-                "Pay securely using Debit or Credit Card through Razorpay Test Checkout.";
+                "Pay securely using Debit or Credit Card through Razorpay.";
 
             confirmButton.textContent =
                 "Continue to Card Payment";
@@ -136,11 +170,15 @@ paymentOptions.forEach(function(option) {
 function confirmCOD() {
 
     const confirmedOrder = {
+
         ...order,
 
         paymentMethod: "Cash on Delivery",
+
         paymentStatus: "Pay on Delivery",
+
         orderStatus: "Pending Confirmation"
+
     };
 
     localStorage.setItem(
@@ -154,6 +192,7 @@ function confirmCOD() {
     );
 
     window.location.href = "success.html";
+
 }
 
 
@@ -164,23 +203,21 @@ async function startRazorpayPayment(selectedPayment) {
     try {
 
         confirmButton.disabled = true;
-        confirmButton.textContent = "Connecting to Payment Gateway...";
 
-        const totalAmount = Number(order.totalAmount);
+        confirmButton.textContent =
+            "Connecting to Payment Gateway...";
 
-        if (!Number.isFinite(totalAmount) || totalAmount <= 0) {
-            throw new Error("Invalid order amount.");
-        }
 
-        // Convert rupees into paise
+        const amountInPaise =
+            Math.round(totalAmount * 100);
 
-        const amountInPaise = Math.round(totalAmount * 100);
 
-        // CREATE RAZORPAY ORDER
+        /* CREATE RAZORPAY ORDER */
 
         const response = await fetch(
             API_URL + "/create-order",
             {
+
                 method: "POST",
 
                 headers: {
@@ -190,19 +227,23 @@ async function startRazorpayPayment(selectedPayment) {
                 body: JSON.stringify({
                     amount: amountInPaise
                 })
+
             }
         );
+
 
         const result = await response.json();
 
         if (!response.ok || !result.success) {
+
             throw new Error(
                 result.message || "Unable to create payment order."
             );
+
         }
 
 
-        // RAZORPAY CHECKOUT OPTIONS
+        /* RAZORPAY CHECKOUT */
 
         const options = {
 
@@ -219,13 +260,19 @@ async function startRazorpayPayment(selectedPayment) {
             order_id: result.orderId,
 
             prefill: {
+
                 name: order.customerName,
+
                 contact: order.mobile
+
             },
 
             notes: {
+
                 product: order.productName,
-                quantity: String(order.quantity)
+
+                quantity: String(quantity)
+
             },
 
             theme: {
@@ -233,7 +280,7 @@ async function startRazorpayPayment(selectedPayment) {
             },
 
 
-            // PAYMENT SUCCESS HANDLER
+            /* PAYMENT SUCCESS */
 
             handler: async function(paymentResponse) {
 
@@ -242,9 +289,11 @@ async function startRazorpayPayment(selectedPayment) {
                     paymentMessage.textContent =
                         "Verifying your payment...";
 
+
                     const verifyResponse = await fetch(
                         API_URL + "/verify-payment",
                         {
+
                             method: "POST",
 
                             headers: {
@@ -252,6 +301,7 @@ async function startRazorpayPayment(selectedPayment) {
                             },
 
                             body: JSON.stringify({
+
                                 razorpay_order_id:
                                     paymentResponse.razorpay_order_id,
 
@@ -260,30 +310,39 @@ async function startRazorpayPayment(selectedPayment) {
 
                                 razorpay_signature:
                                     paymentResponse.razorpay_signature
+
                             })
+
                         }
                     );
+
 
                     const verifyResult =
                         await verifyResponse.json();
 
-                    if (!verifyResponse.ok || !verifyResult.success) {
+
+                    if (
+                        !verifyResponse.ok ||
+                        !verifyResult.success
+                    ) {
 
                         throw new Error(
                             "Payment verification failed."
                         );
+
                     }
 
 
-                    // SAVE VERIFIED ORDER
+                    /* SAVE PAID ORDER */
 
                     const paidOrder = {
 
                         ...order,
 
-                        paymentMethod: selectedPayment === "UPI"
-                            ? "UPI"
-                            : "Card / Online",
+                        paymentMethod:
+                            selectedPayment === "UPI"
+                                ? "UPI"
+                                : "Card / Online",
 
                         paymentStatus: "Paid",
 
@@ -297,6 +356,7 @@ async function startRazorpayPayment(selectedPayment) {
 
                     };
 
+
                     localStorage.setItem(
                         "hnOrder",
                         JSON.stringify(paidOrder)
@@ -307,26 +367,31 @@ async function startRazorpayPayment(selectedPayment) {
                         JSON.stringify(paidOrder)
                     );
 
+
                     alert("Payment successful! Thank you.");
 
                     window.location.href = "success.html";
 
+
                 } catch (error) {
 
                     alert(
-                        "Payment verification error: " + error.message
+                        "Payment verification error: " +
+                        error.message
                     );
 
                     confirmButton.disabled = false;
 
                     confirmButton.textContent =
                         "Try Again";
+
                 }
 
             },
 
 
             modal: {
+
                 ondismiss: function() {
 
                     confirmButton.disabled = false;
@@ -336,36 +401,42 @@ async function startRazorpayPayment(selectedPayment) {
 
                     paymentMessage.textContent =
                         "Payment was not completed. You can try again.";
+
                 }
+
             }
 
         };
 
 
-        // OPEN RAZORPAY CHECKOUT
+        /* OPEN RAZORPAY */
 
         const razorpayCheckout =
             new Razorpay(options);
 
-        razorpayCheckout.on("payment.failed", function(response) {
 
-            alert(
-                "Payment failed: " +
-                response.error.description
-            );
+        razorpayCheckout.on(
+            "payment.failed",
+            function(response) {
 
-            confirmButton.disabled = false;
+                alert(
+                    "Payment failed: " +
+                    response.error.description
+                );
 
-            confirmButton.textContent =
-                "Try Payment Again";
+                confirmButton.disabled = false;
 
-        });
+                confirmButton.textContent =
+                    "Try Payment Again";
+
+            }
+        );
+
 
         razorpayCheckout.open();
 
-    }
 
-    catch (error) {
+    } catch (error) {
 
         alert("Payment Error: " + error.message);
 
@@ -388,12 +459,18 @@ confirmButton.addEventListener("click", function() {
             'input[name="payment"]:checked'
         );
 
+
     if (!selectedOption) {
+
         alert("Please select a payment method.");
+
         return;
+
     }
 
+
     const selectedPayment = selectedOption.value;
+
 
     if (selectedPayment === "COD") {
 
@@ -408,9 +485,12 @@ confirmButton.addEventListener("click", function() {
 
         if (typeof Razorpay === "undefined") {
 
-            alert("Razorpay Checkout is not loaded. Please refresh the page.");
+            alert(
+                "Razorpay Checkout is not loaded. Please refresh the page."
+            );
 
             return;
+
         }
 
         startRazorpayPayment(selectedPayment);
@@ -419,4 +499,4 @@ confirmButton.addEventListener("click", function() {
 
 });
 
-}
+         }
