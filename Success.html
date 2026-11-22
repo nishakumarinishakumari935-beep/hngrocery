@@ -1,1 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Order Successful | HN ENTERPRISES</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.success-container {
+    max-width: 550px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.success-box {
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+}
+
+.success-icon {
+    font-size: 65px;
+    color: #198754;
+}
+
+.success-box h2 {
+    color: #198754;
+}
+
+.order-details {
+    background: #f5f8f5;
+    padding: 18px;
+    border-radius: 10px;
+    text-align: left;
+    margin-top: 25px;
+}
+
+.order-details p {
+    margin: 12px 0;
+}
+
+.home-btn {
+    display: inline-block;
+    background: #198754;
+    color: white;
+    padding: 13px 25px;
+    text-decoration: none;
+    border-radius: 7px;
+    margin-top: 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="header-row">
+
+<div class="company-text">
+
+<h1>HN ENTERPRISES</h1>
+
+<p class="tagline">
+Quality Products • Trusted Service
+</p>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main class="success-container">
+
+<div class="success-box">
+
+<div class="success-icon">✓</div>
+
+<h2>Order Confirmed!</h2>
+
+<p>
+Thank you for choosing HN ENTERPRISES.
+</p>
+
+<p>
+Your Cash on Delivery order has been confirmed on this device.
+</p>
+
+
+<div class="order-details">
+
+<h3>Order Details</h3>
+
+<p>
+Product:
+<strong id="product">-</strong>
+</p>
+
+<p>
+Quantity:
+<strong id="quantity">-</strong>
+</p>
+
+<p>
+Customer:
+<strong id="customer">-</strong>
+</p>
+
+<p>
+Mobile:
+<strong id="mobile">-</strong>
+</p>
+
+<p>
+Delivery Address:
+<strong id="address">-</strong>
+</p>
+
+<p>
+Total Amount:
+<strong id="amount">-</strong>
+</p>
+
+<p>
+Payment:
+<strong id="payment">-</strong>
+</p>
+
+<p>
+Order Status:
+<strong id="status">-</strong>
+</p>
+
+</div>
+
+
+<p>
+Our team will contact you regarding your order.
+</p>
+
+<a href="index.html" class="home-btn">
+Continue Shopping
+</a>
+
+</div>
+
+</main>
+
+
+<footer class="site-footer">
+
+<p>
+© <span id="year"></span>
+HN ENTERPRISES. All rights reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+const order = JSON.parse(
+localStorage.getItem("hnLastOrder") || "null"
+);
+
+if (order) {
+
+document.getElementById("product").textContent =
+order.productName;
+
+document.getElementById("quantity").textContent =
+order.quantity + " Packets";
+
+document.getElementById("customer").textContent =
+order.customerName;
+
+document.getElementById("mobile").textContent =
+order.mobile;
+
+document.getElementById("address").textContent =
+order.address;
+
+document.getElementById("amount").textContent =
+"₹" + Number(order.totalAmount).toFixed(2);
+
+document.getElementById("payment").textContent =
+order.paymentMethod;
+
+document.getElementById("status").textContent =
+order.orderStatus;
+
+} else {
+
+document.querySelector(".success-box").innerHTML =
+"<h2>Order Details Not Found</h2><a href='index.html'>Go to Home</a>";
+
+}
+
+</script>
+
+</body>
+</html>
