@@ -10,7 +10,17 @@
 <title>HN ENTERPRISES | Quality Products</title>
 
 <link rel="stylesheet" href="style.css">
+<!-- CUSTOMER LOGIN CHECK -->
 
+<script>
+(function () {
+    const token = localStorage.getItem("hnCustomerToken");
+
+    if (!token) {
+        window.location.replace("login.html");
+    }
+})();
+</script>
 <style>
 
 /* PRODUCT GALLERY */
