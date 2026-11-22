@@ -1,1 +1,78 @@
-re
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | HN GROCERY</title>
+
+    <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <div class="logo">🛒</div>
+
+        <h1>HN GROCERY</h1>
+
+        <p class="subtitle">Create Your Customer Account</p>
+
+        <form id="registerForm">
+
+            <label>Full Name</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                required
+            >
+
+            <label>Mobile Number</label>
+            <input
+                type="tel"
+                id="mobile"
+                placeholder="Enter 10 digit mobile number"
+                maxlength="10"
+                required
+            >
+
+            <label>Email Address (Optional)</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+            >
+
+            <label>Delivery Address</label>
+            <textarea
+                id="address"
+                placeholder="Enter your full delivery address"
+                required
+            ></textarea>
+
+            <button type="submit" id="registerBtn">
+                Create Account
+            </button>
+
+        </form>
+
+        <p id="message"></p>
+
+        <p class="login-text">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+
+        <p class="footer">
+            Quality Products • Trusted Service
+        </p>
+
+    </div>
+
+    <script src="register.js"></script>
+
+</body>
+</html>
