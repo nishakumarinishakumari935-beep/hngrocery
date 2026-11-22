@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Account | HN GROCERY</title>
+
+    <link rel="stylesheet" href="account.css">
+</head>
+
+<body>
+
+<header class="header">
+    <a href="index.html" class="brand">🛒 HN GROCERY</a>
+    <a href="index.html" class="home-link">Home</a>
+</header>
+
+<main class="account-container">
+
+    <section class="welcome-card">
+        <div class="profile-icon">👤</div>
+
+        <h1>My Account</h1>
+
+        <p>Welcome to HN GROCERY</p>
+
+        <h2 id="customerName">Customer</h2>
+
+        <p id="customerMobile"></p>
+    </section>
+
+    <section class="menu-section">
+
+        <a href="customer-orders.html" class="menu-card">
+            <span>📦</span>
+            <div>
+                <h3>My Orders</h3>
+                <p>View your orders and delivery status</p>
+            </div>
+            <b>›</b>
+        </a>
+
+        <a href="customer-profile.html" class="menu-card">
+            <span>👤</span>
+            <div>
+                <h3>My Profile</h3>
+                <p>View your personal information</p>
+            </div>
+            <b>›</b>
+        </a>
+
+        <a href="index.html" class="menu-card">
+            <span>🛍️</span>
+            <div>
+                <h3>Continue Shopping</h3>
+                <p>Explore HN GROCERY products</p>
+            </div>
+            <b>›</b>
+        </a>
+
+    </section>
+
+    <button id="logoutBtn" class="logout-btn">
+        Logout
+    </button>
+
+</main>
+
+<footer>
+    Quality Products • Trusted Service
+</footer>
+
+<script src="account.js"></script>
+
+</body>
+</html>
