@@ -1,233 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Place Your Order | HN ENTERPRISES</title>
-
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="order.css">
-
-<style>
-
-.order-container {
-    max-width: 650px;
-    margin: 30px auto;
-    padding: 15px;
-}
-
-.order-box {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.12);
-}
-
-.order-product {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding: 15px;
-    background: #f5f8f5;
-    border-radius: 10px;
-    margin: 20px 0;
-}
-
-.order-product img {
-    width: 110px;
-    height: 110px;
-    object-fit: contain;
-    border-radius: 8px;
-}
-
-.order-form label {
-    display: block;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-.order-form input,
-.order-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 7px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 15px;
-}
-
-.order-form textarea {
-    min-height: 100px;
-}
-
-.order-total {
-    background: #f0f8f1;
-    padding: 18px;
-    border-radius: 9px;
-    margin-top: 20px;
-}
-
-.order-total h3 {
-    color: #198754;
-}
-
-.payment-options {
-    margin-top: 20px;
-    padding: 18px;
-    background: #f8f8f8;
-    border-radius: 10px;
-}
-
-.payment-options label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 7px;
-    cursor: pointer;
-}
-
-.payment-options input {
-    width: auto;
-    margin: 0;
-}
-
-.submit-order {
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    background: #198754;
-    color: white;
-    border: none;
-    border-radius: 7px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.submit-order:hover {
-    background: #126b40;
-}
-
-.back-home {
-    display: inline-block;
-    margin-bottom: 15px;
-    color: #198754;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.delivery-date {
-    color: #198754;
-    font-weight: bold;
-}
-
-@media(max-width:500px) {
-
-    .order-box {
-        padding: 15px;
-    }
-
-    .order-product img {
-        width: 85px;
-        height: 85px;
-    }
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<header class="site-header">
-
-<div class="header-row">
-
-<div class="company-text">
-
-<h1>HN ENTERPRISES</h1>
-
-<p class="tagline">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Place your grocery order with HN ENTERPRISES."><title>Place Your Order | HN GROCERY</title><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="order.css"></head><body><!-- HEADER --><header class="site-header"><div class="header-row"><div class="company-text"><h1>HN ENTERPRISES</h1><p class="tagline">
 Quality Products • Trusted Service
-</p>
-
-</div>
-
-<div class="header-contact">
-
-<a href="tel:8294891066">8294891066</a>
+</p></div><div class="header-contact"><a href="tel:8294891066">8294891066</a>
 
 <a href="tel:7739233551">7739233551</a>
 
-</div>
-
-</div>
-
-</header>
-
-
-<main class="order-container">
-
-<a href="index.html" class="back-home">
+</div></div></header><main class="order-container"><a href="index.html" class="back-home">
 ← Back to Home
-</a>
+</a><div class="order-box"><div class="order-heading"><span>🛒</span>
 
-<div class="order-box">
-
-<h2>Product Order</h2>
-
-<p>
-Fill in your details to place an order with HN ENTERPRISES.
-</p>
-
-
-<!-- SELECTED PRODUCT -->
-
-<div class="order-product">
-
-<img id="productImage"
+<h2>Product Order</h2><p>Order your favourite products from HN GROCERY.</p></div><!-- PRODUCT DETAILS --><div class="order-product"><div class="product-image-wrapper"><img
+id="productImage"
 src="images/G1.jpeg"
 alt="Selected Product">
 
-<div>
+</div><div class="product-details"><span class="product-badge">
+✓ Quality Product
+</span><h3 id="productName">Garam Masala</h3><p id="productDescription" class="product-description">
+Premium quality spice product from HN ENTERPRISES.
+</p><div class="product-price">₹<span id="unitPrice">80</span>
 
-<h3 id="productName">Garam Masala</h3>
+<span>/ 100g</span>
 
-<p>
-Price: ₹<span id="unitPrice">80</span> / 100g
-</p>
-
-<p>
-Minimum Quantity:
-<span id="minimumQuantity">10</span> Packets
-</p>
-
-</div>
-
-</div>
-
-
-<!-- ORDER FORM -->
-
-<form id="orderForm" class="order-form">
-
-<label for="fullName">Full Name *</label>
+</div><div class="product-info"><p>📦 Packet Weight: <strong>100 Grams</strong></p><p>🛍️ Minimum Order: <strong>10 Packets</strong></p><p>🚚 Estimated Delivery: <strong>10 Days</strong></p></div></div></div><!-- ORDER FORM --><form id="orderForm" class="order-form"><h3 class="form-heading">
+Customer Information
+</h3><label for="fullName">Full Name *</label>
 
 <input
 type="text"
 id="fullName"
 placeholder="Enter your full name"
 maxlength="100"
+autocomplete="name"
 required>
-
 
 <label for="mobile">Mobile Number *</label>
 
@@ -237,10 +43,18 @@ id="mobile"
 placeholder="Enter 10 digit mobile number"
 pattern="[6-9][0-9]{9}"
 maxlength="10"
+inputmode="numeric"
+autocomplete="tel"
 required>
 
-
-<label for="quantity">Quantity (Packets) *</label>
+<!-- QUANTITY --><div class="quantity-section"><label for="quantity">
+Select Quantity (Packets) *
+</label><div class="quantity-control"><button
+type="button"
+id="decreaseQty"
+aria-label="Decrease quantity">
+−
+</button>
 
 <input
 type="number"
@@ -250,175 +64,180 @@ min="10"
 step="1"
 required>
 
-<small>
-Minimum order: 10 packets. No maximum quantity limit.
-<br>
+<button
+type="button"
+id="increaseQty"
+aria-label="Increase quantity">
++
+</button>
+
+</div><small>
+Minimum order is 10 packets.
 Each packet contains 100 grams.
-</small>
-
-
-<label for="address">Complete Delivery Address *</label>
-
-<textarea
+</small></div><label for="address">
+Complete Delivery Address *
+</label><textarea
 id="address"
-placeholder="House number, street, city, state and PIN code"
+placeholder="House number, street, village, city, state and PIN code"
 maxlength="500"
-required></textarea>
+autocomplete="street-address"
+required></textarea><!-- ORDER SUMMARY --><div class="order-total"><h3>🧾 Order Summary</h3><div class="summary-row"><span>Product</span>
 
+<strong id="summaryProduct">
+Garam Masala
+</strong></div><div class="summary-row"><span>Price per Packet</span>
 
-<!-- PRICE DETAILS -->
-
-<div class="order-total">
-
-<h3>Order Summary</h3>
-
-<p>
-Price per packet:
 <strong>₹<span id="displayPrice">80</span></strong>
-</p>
 
-<p>
-Quantity:
+</div><div class="summary-row"><span>Packet Weight</span>
+
+<strong>100 Grams</strong>
+
+</div><div class="summary-row"><span>Quantity</span>
+
 <strong id="displayQuantity">10</strong>
-</p>
 
-<hr>
+</div><hr><div class="summary-total"><span>Total Amount</span>
 
-<h3>
-Total Amount: ₹<span id="totalAmount">800</span>
-</h3>
+<strong>₹<span id="totalAmount">800.00</span></strong>
 
-<p>
-Delivery Date:
-<span class="delivery-date" id="deliveryDate"></span>
-</p>
+</div><div class="delivery-box">🚚 Estimated Delivery Date:
 
-<p>
-Delivery is estimated 10 days after order date.
-</p>
+<strong id="deliveryDate"></strong>
 
-</div>
-
-
-<!-- PAYMENT OPTIONS -->
-
-<div class="payment-options">
-
-<h3>Select Payment Method</h3>
-
-<label>
-
-<input
+<p>Estimated delivery is 10 days after order date.</p></div></div><!-- PAYMENT OPTIONS --><div class="payment-options"><h3>💳 Select Payment Method</h3><label><input
 type="radio"
 name="paymentMethod"
 value="COD"
 checked>
 
-<span>💵 Cash on Delivery (Pay when delivered)</span>
+<span>💵 Cash on Delivery</span>
 
-</label>
-
-
-<label>
-
-<input
+</label><label><input
 type="radio"
 name="paymentMethod"
 value="UPI">
 
 <span>📱 UPI Payment (Google Pay / PhonePe / Paytm)</span>
 
-</label>
-
-
-<label>
-
-<input
+</label><label><input
 type="radio"
 name="paymentMethod"
 value="CARD">
 
 <span>💳 Debit / Credit Card</span>
 
-</label>
-
-</div>
-
-
-<button type="submit" class="submit-order">
+</label></div><button
+type="submit"
+class="submit-order"
+id="submitOrder">
 
 Continue to Payment →
 
-</button>
-
-</form>
-
-</div>
-
-</main>
-
-
-<!-- FOOTER -->
-
-<footer class="site-footer">
-
-<p>
+</button><p class="secure-note">
+🔒 Your order information will be saved securely.
+</p></form></div></main><!-- FOOTER --><footer class="site-footer"><p>
 © <span id="currentYear"></span>
 HN ENTERPRISES. All rights reserved.
-</p>
+</p></footer><script>
 
-</footer>
-
-
-<!-- ORDER JAVASCRIPT -->
-
-<script>
+/* CURRENT YEAR */
 
 document.getElementById("currentYear").textContent =
 new Date().getFullYear();
 
 
-/* GET PRODUCT DETAILS FROM URL */
+/* PRODUCT DETAILS */
 
 const params = new URLSearchParams(window.location.search);
 
 const productName =
 params.get("name") || "Garam Masala";
 
-const productImage =
+const requestedImage =
 params.get("image") || "images/G1.jpeg";
 
+const parsedPrice = Number(params.get("price"));
+
 const productPrice =
-Number(params.get("price")) || 80;
+Number.isFinite(parsedPrice) && parsedPrice > 0
+? parsedPrice
+: 80;
 
 
-/* MINIMUM QUANTITY FIXED TO 10 */
+/* PRODUCT DESCRIPTIONS */
+
+const descriptions = {
+
+"Garam Masala":
+"Aromatic spice blend used to prepare delicious Indian curries, vegetables and traditional dishes.",
+
+"Red Mirch":
+"Red chilli spice for adding colour, flavour and heat to your favourite Indian recipes.",
+
+"Dhaniya":
+"Traditional coriander spice suitable for everyday cooking, curries and vegetables.",
+
+"Mustard":
+"Mustard seeds commonly used for seasoning, tempering and traditional Indian cooking.",
+
+"Tejpatta":
+"Fragrant bay leaves used to enhance the aroma and flavour of rice, curries and other dishes.",
+
+"Zeera":
+"Aromatic cumin seeds widely used in Indian cooking, seasoning and delicious recipes."
+
+};
+
+
+/* IMAGE VALIDATION */
+
+const productImage =
+requestedImage.startsWith("images/") &&
+!requestedImage.includes("..") &&
+!requestedImage.includes("\\")
+? requestedImage
+: "images/G1.jpeg";
+
+
+/* MINIMUM QUANTITY */
 
 const minQty = 10;
 
 
-/* SHOW PRODUCT */
+/* SHOW PRODUCT INFORMATION */
 
 document.getElementById("productName").textContent =
 productName;
+
+document.getElementById("summaryProduct").textContent =
+productName;
+
+document.getElementById("productDescription").textContent =
+descriptions[productName] ||
+"Quality product from HN ENTERPRISES.";
 
 document.getElementById("productImage").src =
 productImage;
 
 document.getElementById("unitPrice").textContent =
-productPrice;
+productPrice.toFixed(2);
 
 document.getElementById("displayPrice").textContent =
-productPrice;
-
-document.getElementById("minimumQuantity").textContent =
-minQty;
+productPrice.toFixed(2);
 
 
-/* QUANTITY */
+/* QUANTITY CONTROL */
 
 const quantityInput =
 document.getElementById("quantity");
+
+const decreaseBtn =
+document.getElementById("decreaseQty");
+
+const increaseBtn =
+document.getElementById("increaseQty");
+
 
 quantityInput.min = minQty;
 
@@ -429,9 +248,66 @@ function updateTotal() {
 
 let quantity = Number(quantityInput.value);
 
-if (!Number.isFinite(quantity) || quantity < 0) {
-quantity = 0;
+if (!Number.isSafeInteger(quantity) || quantity < minQty) {
+
+quantity = minQty;
+
 }
+
+quantityInput.value = quantity;
+
+const total = quantity * productPrice;
+
+document.getElementById("displayQuantity").textContent =
+quantity;
+
+document.getElementById("totalAmount").textContent =
+total.toFixed(2);
+
+decreaseBtn.disabled = quantity <= minQty;
+
+}
+
+
+decreaseBtn.addEventListener("click", function() {
+
+let quantity = Number(quantityInput.value);
+
+if (quantity > minQty) {
+
+quantityInput.value = quantity - 1;
+
+updateTotal();
+
+}
+
+});
+
+
+increaseBtn.addEventListener("click", function() {
+
+let quantity = Number(quantityInput.value);
+
+if (Number.isSafeInteger(quantity) &&
+quantity < Number.MAX_SAFE_INTEGER) {
+
+quantityInput.value = quantity + 1;
+
+updateTotal();
+
+}
+
+});
+
+
+quantityInput.addEventListener("input", function() {
+
+const quantity = Number(quantityInput.value);
+
+if (
+Number.isSafeInteger(quantity) &&
+quantity >= minQty
+) {
 
 document.getElementById("displayQuantity").textContent =
 quantity;
@@ -441,12 +317,15 @@ document.getElementById("totalAmount").textContent =
 
 }
 
-quantityInput.addEventListener("input", updateTotal);
+});
+
+
+quantityInput.addEventListener("change", updateTotal);
 
 updateTotal();
 
 
-/* DELIVERY DATE: 10 DAYS */
+/* DELIVERY DATE */
 
 const orderDate = new Date();
 
@@ -454,15 +333,17 @@ const deliveryDate = new Date(orderDate);
 
 deliveryDate.setDate(deliveryDate.getDate() + 10);
 
-const formattedDate =
-deliveryDate.toLocaleDateString("en-IN", {
-day: "2-digit",
-month: "long",
-year: "numeric"
-});
-
 document.getElementById("deliveryDate").textContent =
-formattedDate;
+
+deliveryDate.toLocaleDateString("en-IN", {
+
+day: "2-digit",
+
+month: "long",
+
+year: "numeric"
+
+});
 
 
 /* FORM SUBMISSION */
@@ -477,31 +358,71 @@ if (!this.reportValidity()) {
 return;
 }
 
+
 const quantity = Number(quantityInput.value);
 
 
-if (!Number.isSafeInteger(quantity) || quantity < minQty) {
+if (
+!Number.isSafeInteger(quantity) ||
+quantity < minQty
+) {
 
-alert("Minimum quantity is 10 packets.");
+alert("Minimum order quantity is 10 packets.");
 
 return;
 
 }
 
 
-const paymentMethod =
+const mobile =
+document.getElementById("mobile").value.trim();
+
+if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+
+alert("Please enter a valid 10 digit mobile number.");
+
+return;
+
+}
+
+
+const totalAmount = quantity * productPrice;
+
+if (!Number.isFinite(totalAmount) ||
+totalAmount <= 0) {
+
+alert("Invalid order amount.");
+
+return;
+
+}
+
+
+const paymentOption =
 document.querySelector(
 'input[name="paymentMethod"]:checked'
-).value;
+);
 
+if (!paymentOption) {
+
+alert("Please select a payment method.");
+
+return;
+
+}
+
+
+const paymentMethod = paymentOption.value;
+
+
+/* ORDER DATA - PAYMENT SYSTEM COMPATIBLE */
 
 const orderDetails = {
 
 customerName:
 document.getElementById("fullName").value.trim(),
 
-mobile:
-document.getElementById("mobile").value.trim(),
+mobile: mobile,
 
 address:
 document.getElementById("address").value.trim(),
@@ -514,7 +435,7 @@ price: productPrice,
 
 quantity: quantity,
 
-totalAmount: quantity * productPrice,
+totalAmount: totalAmount,
 
 paymentMethod: paymentMethod,
 
@@ -525,7 +446,7 @@ deliveryDate: deliveryDate.toISOString()
 };
 
 
-/* SAVE ORDER DETAILS */
+/* SAVE ORDER */
 
 try {
 
@@ -544,7 +465,4 @@ alert("Unable to save order. Please try again.");
 
 });
 
-</script>
-
-</body>
-</html>
+</script></body></html>
