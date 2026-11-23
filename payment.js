@@ -1,6 +1,5 @@
 /* HN ENTERPRISES RAZORPAY PAYMENT SYSTEM */
-
-const API_URL = "https://hn-payment-backend.onrender.com";
+const API_URL = "https://hn-payment-backend-1.onrender.com";
 
 const MINIMUM_QUANTITY = 10;
 
